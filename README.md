@@ -6,5 +6,6 @@ Ceci est en réalité le projet de MicroContrôleur, nous comptons réaliser un 
  - Affichag LCD
  - Télécommande
  - (Buzzer)
+ - 1 cc de sel
 
 On affiche la température à l'aide du moteur sur un cadran à aiguille, l'écran LCD sert de menu : température en °C ou en °F, température max. Le menu est contrôlé par la télécommande. Si la température max est dépassée : alarme.
