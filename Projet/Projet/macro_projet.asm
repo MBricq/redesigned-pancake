@@ -41,6 +41,10 @@
 	sbc		@1, w
 .endmacro
 
-.macro CEL_TO_FAHR ; in @
-	
+.macro CHECK_MENU_LIMIT	
+	mov		w, m			;load m in w
+	andi	w, 0b00001011	;use a mask to keep only the bits 0,1,3
+	cpi		w, 0b00001000	;see if we are in the the correct sub menu
+	breq	PC+2			
+	jmp		affichage		;we are in the wrong sub menu
 .endmacro

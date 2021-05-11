@@ -9,9 +9,9 @@ read_remote:
 	CLR2	a1,a0
 	ldi		b2,16			; load bit-counter
 	WP1		PINF,IR			; Wait if Pin=1 
-	cli							; The NEC signals as to be read without interrupt
+	cli						; The NEC signals as to be read without interrupt
 	WAIT_US	T2				; wait for timeout
-	clc							; clearing carry
+	clc						; clearing carry
 	
 addr: 
 	;INVP	PORTB,1
@@ -41,13 +41,15 @@ data:
 	rjmp	rdz_d			
 	WAIT_US	(T1 - 4.75)
 	DJNZ	b2,data			
-	jmp		next_b			
+	jmp		next_b		
+		
 rdz_d:							
 	WAIT_US	(2*T1 - 5.75)
 	DJNZ	b2,data				
 
 next_b:
 	MOV2	d3,d2,b1, b0	; store current command
+
  data_proc01:				; detect repeated code
 	_CPI		d3, 0xff
 	brne	data_proc02

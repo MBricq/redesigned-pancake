@@ -53,17 +53,27 @@ update_temp:
 	
 	;rcall turn_moteur
 
-	rcall	wire1_reset
-	CA		wire1_write, skipROM
-	CA		wire1_write,alarmSearch
-	rcall	wire1_read	
-	mov		r16, a0
-	out		PORTB,r16
+	;rcall	wire1_reset
+	;CA		wire1_write, skipROM
+	;CA		wire1_write,alarmSearch
+	;rcall	wire1_read	
+	;mov		r16, a0
+	;out		PORTB,r16
 
 	ret
 
 
 save_t_eeprom:
+	ldi xh, high(th_eep)
+	ldi xl, low(th_eep)
+	lds a0, th_addr
+	rcall	eeprom_store
+
+	ldi xh, high(tl_eep)
+	ldi xl, low(tl_eep)
+	lds a0, tl_addr
+	rcall	eeprom_store
+
 	sbrc m,2
 	rjmp conv_to_c
 
@@ -88,39 +98,26 @@ back_to_save:
 conv_to_c:
 	lds a0, th_addr
 	rcall fahr_to_c
-	mov d0,a0
+	push a0
 	lds a0, tl_addr
 	rcall fahr_to_c
 	mov d1,a0
+	pop d0
 	rjmp back_to_save
 
 load_t_eeprom:
-	rcall	wire1_reset			; send a reset pulse
-	CA		wire1_write, skipROM
-	CA		wire1_write, readScratchpad	
-	rcall	wire1_read			; read temperature LSB
-	rcall	wire1_read			; read temperature MSB
-	rcall	wire1_read			; read temperature TH
+	ldi xh, high(th_eep)
+	ldi xl, low(th_eep)
+	rcall eeprom_load
 	mov d0,a0
-	rcall	wire1_read			; read temperature TL
-	sts		tl_addr,a0
+	ldi xh, high(tl_eep)
+	ldi xl, low(tl_eep)
+	rcall eeprom_load
 	mov d1,a0
 
-	sbrc m,2
-	rjmp conv_to_f
-
-back_to_load:
 	sts th_addr, d0
 	sts tl_addr, d1
 	ret
-
-conv_to_f:
-	rcall cel_to_f
-	mov d1, a0
-	mov a0, d0
-	rcall cel_to_f
-	mov d0,a0
-	rjmp back_to_load
 
 ; in a0
 cel_to_f:
@@ -154,7 +151,6 @@ add_c_f:
 
 ; in a0
 fahr_to_c:
-
 	subi a0, 32 
 
 	bst		a0,7

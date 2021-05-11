@@ -14,32 +14,58 @@ reset:
 	rcall	LCD_init	; initialize LCD
 	OUTI	DDRD,0x00
 
-	ldi xh, high(eep_addr)
-	ldi xl, low(eep_addr)
-	rcall eeprom_load
-	mov b0,a0
-
 
 	rjmp main
 
 .include "Libraries\lcd.asm"
 .include "Libraries\printf.asm"
-.include "Libraries\eeprom.asm"
+.include "Libraries\math_speed.asm"
 
 main:
-	rcall LCD_home
-	PRINTF LCD
-	.db FDEC,b,"     ",0
 
-	in w, PIND
-	com w
-	cpi w, 0
-	breq main
+	_LDI d1, 3
+	_LDI d0, 37
 
-	mov b0, w
-	ldi xh, high(eep_addr)
-	ldi xl, low(eep_addr)
-	mov a0,b0
-	rcall	eeprom_store
+	push d0
+	mov a0, d1
+	rcall cel_to_f
+	mov d1, a0
+	pop a0
+	push d1
+	rcall cel_to_f
+	mov d0,a0
+	pop d1
+
+
 
 	rjmp	main
+
+
+cel_to_f:
+	bst		a0,7
+	cpi		a0, 0
+	brpl	mul_c_f
+
+; a0 is negative, we take its absolute value
+	com a0
+	subi a0, (-1)
+
+mul_c_f:
+	ldi b0, 9
+	rcall mul11
+	mov a0,c0
+	mov a1,c1
+	ldi b0, 5
+	clr b1
+	rcall div22
+	
+	mov a0,c0
+	brtc	add_c_f
+
+; a0 is turned back into a negative number
+	com a0
+	subi a0, (-1)
+
+add_c_f:
+	subi a0, (-32) ; a0 : T in F
+	ret

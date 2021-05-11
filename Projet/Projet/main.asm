@@ -5,15 +5,19 @@
 .equ	th_addr = 0x0200		;address to store the high temp
 .equ	tl_addr = 0x0201		;address to store the low temp
 .equ	unit_addr = 0x0202		;address to store the unit
+.equ	m_eep_addr = 0x0000
+.equ	th_eep = 0x0001
+.equ	tl_eep = 0x0002
 
 .org	0
 	jmp	reset
 
 .org OVF0addr
 	jmp	ovf0
-	
+
 .include	"temp.asm"
 .include	"remote.asm"
+.include	"Libraries\eeprom.asm"
 .include	"affichage.asm"
 
 ovf0:
@@ -37,7 +41,11 @@ ovf0:
 reset:	
 	LDSP	RAMEND			; load stack pointer (SP)
 	OUTI	DDRB, 0xff
-	_LDI	m,0
+	
+	ldi xh, high(m_eep_addr)
+	ldi xl, low(m_eep_addr)
+	rcall eeprom_load
+	mov m,a0
 
 	ldi		w,1
 	sts		unit_addr,w
@@ -55,6 +63,7 @@ reset:
 
 
 main:
+	out PORTB, m
 	rcall	read_remote
 	sei
 
@@ -81,7 +90,7 @@ gestion_bouton:				;button code to their function
 	cpi		b0, 0xa8
 	breq	minus_button	;-
 
-	jmp		next_buttons
+	jmp		num_pad_buttons
 
 next_menu:					;change menu (two last bits of m) to the right
 	sbrc	m,3				;enter in the sub menu 
@@ -93,7 +102,7 @@ next_menu:					;change menu (two last bits of m) to the right
 	andi	_w, 0b00000011	;save the two last bits of m and clear the other
 	_ANDI	m, 0b11111100	;clear the two lastbits of m with a mask
 	add		m,_w			;assemble the unmodified part with the last two bits
-	jmp		affichage
+	jmp		save_m_eeprom
 
 previous_menu:				;change menu (two last bits of m) to the left
 	sbrc	m,3				;enter in the sub menu 
@@ -105,17 +114,17 @@ previous_menu:				;change menu (two last bits of m) to the left
 	andi	_w, 0b00000011	;save the two last bits of m and clear the other 
 	_ANDI	m, 0b11111100	;clear the two lastbits of m with a mask
 	add		m,_w			;assemble the unmodified part with the last two bits
-	jmp		affichage
+	jmp		save_m_eeprom
 
 change_sub:					;change the sub menu (4th bit of m)
 	ldi		w, 0b00010000	;load the 4th bit in w
 	eor		m, w			;change the 4th bit of m
-	jmp		affichage
+	jmp		save_m_eeprom
 
 mode_button:				;enter or exit the sub menu (3rd bit of m)
 	ldi		w, 0b00001000	;load the 3rd bit in w
 	eor		m, w			;change the 3rd bit of m
-	jmp		affichage
+	jmp		save_m_eeprom
 
 switch_button:				;choose btw Celcius and Fahrenheit
 	mov		w, m			;load m in w
@@ -125,15 +134,15 @@ switch_button:				;choose btw Celcius and Fahrenheit
 	jmp		affichage		;we are in the wrong sub menu
 	ldi		w, 0b00000100	;correct sub menu, load the 2nd bit in w
 	eor		m, w			;modify the 2nd bit of m
-	jmp		affichage
+	jmp		save_m_eeprom
 
 plus_button:					;button used to increase the temp value
-	rcall	check_subm_is_limit	
+	CHECK_MENU_LIMIT
 	lds		w, unit_addr
 	rjmp	change_temp
 
 minus_button:					;button used to lower the temp value
-	rcall	check_subm_is_limit
+	CHECK_MENU_LIMIT
 	lds		w, unit_addr
 	com		w					;start reversing bits
 	subi	w, (-1)				;add 1 so that all bits are inverted
@@ -166,7 +175,8 @@ save_t:
 	jmp		affichage
 
 
-next_buttons:				;button code to their function
+num_pad_buttons:				;button code to their function
+	CHECK_MENU_LIMIT
 	cpi		b0, 0x30
 	breq	button_one		;1
 	cpi		b0, 0x18
@@ -191,52 +201,42 @@ next_buttons:				;button code to their function
 	jmp		affichage
 
 button_one:							;button used to change to 1 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,1
 	rjmp	change_unit
 
 button_two:							;button used to change to 2 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,2
 	rjmp	change_unit
 
 button_three:						;button used to change to 3 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,3
 	rjmp	change_unit
 	
 button_four:						;button used to change to 4 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,4
 	rjmp	change_unit
 
 button_five:						;button used to change to 5 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,5
 	rjmp	change_unit
 
 button_six:							;button used to change to 6 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,6
 	rjmp	change_unit
 
 button_seven:						;button used to change to 7 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,7
 	rjmp	change_unit
 
 button_eight:						;button used to change to 8 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,8
 	rjmp	change_unit
 
 button_nine:						;button used to change to 9 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,9
 	rjmp	change_unit
 
 button_zero:						;button used to change to 10 the unit to add/remove at the temp lim
-	rcall	check_subm_is_limit
 	ldi		w,10
 	rjmp	change_unit
 
@@ -244,10 +244,9 @@ change_unit:						;change the value of the unit in the address
 	sts		unit_addr, w
 	jmp		affichage
 
-check_subm_is_limit:	
-	mov		w, m			;load m in w
-	andi	w, 0b00001011	;use a mask to keep only the bits 0,1,3
-	cpi		w, 0b00001000	;see if we are in the the correct sub menu
-	breq	PC+2			
-	jmp		affichage		;we are in the wrong sub menu
-	ret
+save_m_eeprom:
+	ldi xh, high(m_eep_addr)
+	ldi xl, low(m_eep_addr)
+	mov a0,m
+	rcall	eeprom_store
+	jmp affichage
