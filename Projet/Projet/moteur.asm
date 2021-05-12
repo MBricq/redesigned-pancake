@@ -19,11 +19,6 @@ motor_reset:
 ;mod:
 turn_moteur:
 	P0	PORTB,SERVO1
-
-	rcall	LCD_clear
-	rcall	LCD_home
-	PRINTF	LCD
-	.db		FFRAC2+FSIGN,a,4,$42,LF,0
 	
 	mov		w, a0
 	mov		_w, a1
@@ -62,13 +57,12 @@ negative_angle:
 ; in a1:a0, a2 out void, mod a2,w
 ; purpose execute arbitrary rotation
 check_zero:
-	PRINTF	LCD
-	.db		FBIN,b,0
+	PRINTF LCD
+	.db LF, "b=", FBIN, b, 0
+
 	cpi		b0,0
 	breq	stop
 store_value:
-	PRINTF	LCD
-	.db		"!=0",0
 	sts		0x1070, c0
 	sts		0x1072, c1
 motor_loop:
@@ -91,6 +85,4 @@ lpssp01:
 	ret
 
 stop:
-	PRINTF	LCD
-	.db		"=0",0
 	ret

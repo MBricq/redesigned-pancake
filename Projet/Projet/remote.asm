@@ -1,7 +1,7 @@
 
-.equ	T2 = 16632			; start timout, T2 = (14906 + (14906 * Terr2)) 
+.equ	T2 = 14906*(1+0.034)			; start timout, T2 = (14906 + (14906 * Terr2)) 
 							;>with Terr2 = 4.2% observed with the oscilloscope
-.equ	T1 = 1200			; bit period, T1 = (1125 + (1125 * Terr1)) with 
+.equ	T1 = 1125*(1+0.036)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
 							;>Terr1 = 6.% observed with the oscilloscope
 
 read_remote:	

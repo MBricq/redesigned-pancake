@@ -187,7 +187,7 @@ num_pad_buttons:				;button code to their function
 	breq	button_four		;4
 	cpi		b0, 0x38
 	breq	button_five		;5
-	cpi		b0, 0x50
+	cpi		b0, 0x5a
 	breq	button_six		;6
 	cpi		b0, 0x42
 	breq	button_seven	;7

@@ -118,14 +118,14 @@
   <__d41><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE><LINE>452</LINE></__d41>
   <motor_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>12</LINE></motor_reset>
   <turn_moteur><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>20</LINE></turn_moteur>
-  <negative_angle><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>50</LINE></negative_angle>
-  <positive_angle><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>38</LINE></positive_angle>
-  <check_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>64</LINE></check_zero>
-  <stop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>93</LINE></stop>
-  <store_value><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>69</LINE></store_value>
-  <motor_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>74</LINE></motor_loop>
-  <servoreg_pulse><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>83</LINE></servoreg_pulse>
-  <lpssp01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>87</LINE></lpssp01>
+  <negative_angle><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>45</LINE></negative_angle>
+  <positive_angle><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>33</LINE></positive_angle>
+  <check_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>59</LINE></check_zero>
+  <stop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>87</LINE></stop>
+  <store_value><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>65</LINE></store_value>
+  <motor_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>68</LINE></motor_loop>
+  <servoreg_pulse><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>77</LINE></servoreg_pulse>
+  <lpssp01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\moteur.asm</FILE><LINE>81</LINE></lpssp01>
   <temp_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>12</LINE></temp_reset>
   <load_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>108</LINE></load_t_eeprom>
   <update_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>29</LINE></update_temp>

@@ -8,7 +8,7 @@
 .include	"Libraries\printf.asm"		; include formatted printing routines
 .include	"moteur.asm"	
 
-; routine called to reset 1-wire
+; routine called to reset 1-wire<
 temp_reset:
 	rcall	wire1_init				;init. 1-wire interface
 	rcall	wire1_reset
