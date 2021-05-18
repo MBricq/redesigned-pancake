@@ -6,9 +6,9 @@
 .include	"Libraries\lcd.asm"			; include LCD driver routines
 .include	"Libraries\wire1.asm"		; include Dallas 1-wire(R) routines
 .include	"Libraries\printf.asm"		; include formatted printing routines
-.include	"moteur.asm"	
+.include	"macro_projet.asm"
 
-; routine called to reset 1-wire<
+; routine called to reset 1-wire
 temp_reset:
 	rcall	wire1_init				;init. 1-wire interface
 	rcall	wire1_reset
@@ -16,18 +16,12 @@ temp_reset:
 
 	rcall	load_t_eeprom
 
-	ldi		a0,0
-	ldi		a1,0
-	sts		0x1070, a0
-	sts		0x1072, a1
-
-	rcall	motor_reset
+	OUTI	DDRB,0xff				; configure portB to output
 
 	ret
 
 ; routine used to update temperature
 update_temp:
-
 	rcall	wire1_reset				; send a reset pulse
 	CA		wire1_write, skipROM	; skip ROM identification
 	CA		wire1_write, convertT	; initiate temp conversion
@@ -41,24 +35,52 @@ update_temp:
 	rcall	wire1_read				; read temperature MSB
 	mov		a1,a0
 	mov		a0,c0
-
-	ANGLEC	a0,a1
-	mov		c0, a0
-	mov		c1, a1
-
-	lds		b0, 0x1070
-	lds		b1, 0x1072
-	sub		a0, b0
-	sbc		a1, b1
+	mov		c1,a1
 	
-	;rcall turn_moteur
+	rcall LCD_home
+	PRINTF LCD
+	.db "temp=",FFRAC2+FSIGN,a,4,$42,"     ",LF,0
 
-	;rcall	wire1_reset
-	;CA		wire1_write, skipROM
-	;CA		wire1_write,alarmSearch
-	;rcall	wire1_read	
-	;mov		r16, a0
-	;out		PORTB,r16
+	ldi b0, 24
+add_loop:
+	add a0, c0
+	adc a1, c1
+	subi b0, 1
+	brne add_loop
+
+	DIV22B a0, a1
+
+	DIV22B a0, a1
+	DIV22B a0, a1
+	DIV22B a0, a1
+	DIV22B a0, a1
+
+	ldi w, low(1375)
+	ldi _w, high(1375)
+	add a0, w
+	adc a1, _w
+
+	PRINTF	LCD				; print formatted
+.db	"pulse=",FDEC2,a,"usec    ",CR,0
+
+	; moteur
+	mov b0, a0
+	mov b1, a1
+	ldi b2, 20
+
+recall_motor:
+	mov a0, b0
+	mov a1, b1
+	P1	PORTB,SERVO1		; pin=4
+loop_motor:
+	SUBI2	a1,a0,0x1
+	brne	loop_motor
+
+	P0	PORTB,SERVO1	; pin=4
+	WAIT_US	20000
+
+	subi b2, 1
+	brne recall_motor
 
 	ret
 

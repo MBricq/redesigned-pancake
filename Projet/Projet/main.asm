@@ -40,7 +40,6 @@ ovf0:
 
 reset:	
 	LDSP	RAMEND			; load stack pointer (SP)
-	OUTI	DDRB, 0xff
 	
 	ldi xh, high(m_eep_addr)
 	ldi xl, low(m_eep_addr)
@@ -63,14 +62,13 @@ reset:
 
 
 main:
-	out PORTB, m
 	rcall	read_remote
 	sei
 
 	cpi		b0,0
 	breq	error
 
-	rjmp	gestion_bouton
+	rjmp	main
 
 error:
 	rjmp	main

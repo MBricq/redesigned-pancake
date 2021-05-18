@@ -6,29 +6,22 @@
 	jmp temp_reset
 
 .include	"Libraries\macros.asm"		; include macro definitions
+.include	"macro_projet.asm"
 .include	"Libraries\definitions.asm"	; include register/constant definitions
-.include	"Libraries\math_speed.asm"
 .include	"Libraries\lcd.asm"			; include LCD driver routines
 .include	"Libraries\wire1.asm"		; include Dallas 1-wire(R) routines
-.include	"Libraries\printf.asm"		; include formatted printing routines
-.include	"moteur.asm"	
+.include	"Libraries\printf.asm"		; include formatted printing routines	
 
 ; routine called to reset 1-wire<
 temp_reset:
 	LDSP RAMEND
 	rcall LCD_init
 
-
 	rcall	wire1_init				;init. 1-wire interface
 	rcall	wire1_reset
 	CA		wire1_write,recallE2	;recall the th and conf. from EEPROM
 
-	ldi		a0,0
-	ldi		a1,0
-	sts		0x1070, a0
-	sts		0x1072, a1
-
-	rcall	motor_reset
+	OUTI	DDRB,0xff				; configure portB to output
 
 	rjmp update_temp
 
@@ -49,29 +42,40 @@ update_temp:
 	mov		a1,a0
 	mov		a0,c0
 
-	ANGLEC	a0,a1
-	mov		c0, a0
-	mov		c1, a1
-
-	lds		b0, 0x1070
-	lds		b1, 0x1072
-
 	rcall LCD_home
-	rcall LCD_clear
 	PRINTF LCD
-	.db FFRAC2+FSIGN,a,4,$42,FFRAC2+FSIGN,b,4,$42,CR,0
+	.db "temp=",FFRAC2+FSIGN,a,4,$42,"     ",LF,0
 
-	sub		a0, b0
-	sbc		a1, b1
-	
-	rcall turn_moteur
+	mov c1,a1
 
-	;rcall	wire1_reset
-	;CA		wire1_write, skipROM
-	;CA		wire1_write,alarmSearch
-	;rcall	wire1_read	
-	;mov		r16, a0
-	;out		PORTB,r16
+	ldi b0, 24
+add_loop:
+	add a0, c0
+	adc a1, c1
+	subi b0, 1
+	brne add_loop
 
-	WAIT_MS 1000
+	DIV22B a0, a1
+
+	DIV22B a0, a1
+	DIV22B a0, a1
+	DIV22B a0, a1
+	DIV22B a0, a1
+
+	ldi w, low(1375)
+	ldi _w, high(1375)
+	add a0, w
+	adc a1, _w
+
+	PRINTF	LCD				; print formatted
+	.db	"pulse=",FDEC2,a,"usec    ",CR,0
+
+	; moteur
+	P1	PORTB,SERVO1		; pin=4
+loop_motor:
+	SUBI2	a1,a0,0x1
+	brne	loop_motor
+	P0	PORTB,SERVO1	; pin=4
+	WAIT_US	20000
+
 	rjmp update_temp

@@ -6,9 +6,6 @@
  */ 
 .include	"macro_projet.asm"
 
-.equ	max_speed = 2000			
-.equ	min_speed = 1000
-
 motor_reset:
 	OUTI	DDRB,0xff		; configure portC to output
 	ret			
@@ -18,53 +15,8 @@ motor_reset:
 ;in a1:a0 angle in byte
 ;mod:
 turn_moteur:
-	P0	PORTB,SERVO1
 	
-	mov		w, a0
-	mov		_w, a1
-	DIV22B	a0, a1
-	add		a0, w
-	adc		a1, _w
-	DIV22B	a0, a1
-
-	sbrc	a1, 7
-	rjmp	negative_angle	
-
-positive_angle:
-;	shift right 4X
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	mov		b0, a0
-
-	ldi		a0, low(max_speed)
-	ldi		a1, high(max_speed)
-	rjmp	check_zero
-
-negative_angle:
-	COM2B	a0,a1
-	;	shift right 4X
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	DIV22B	a0, a1
-	mov		b0, a0
-	ldi		a0, low(min_speed)
-	ldi		a1, high(min_speed)
-	rjmp	check_zero	
-
-; in a1:a0, a2 out void, mod a2,w
-; purpose execute arbitrary rotation
-check_zero:
-	PRINTF LCD
-	.db LF, "b=", FBIN, b, 0
-
-	cpi		b0,0
-	breq	stop
-store_value:
-	sts		0x1070, c0
-	sts		0x1072, c1
+	ldi b0, 30
 motor_loop:
 	rcall	servoreg_pulse
 	dec		b0
