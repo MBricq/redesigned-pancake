@@ -86,6 +86,9 @@
     <Compile Include="debug.asm">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ir_button.asm">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Libraries\definitions.asm">
       <SubType>Code</SubType>
     </Compile>

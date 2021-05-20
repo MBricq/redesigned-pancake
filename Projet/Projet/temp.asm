@@ -36,10 +36,6 @@ update_temp:
 	mov		a1,a0
 	mov		a0,c0
 	mov		c1,a1
-	
-	rcall LCD_home
-	PRINTF LCD
-	.db "temp=",FFRAC2+FSIGN,a,4,$42,"     ",LF,0
 
 	ldi b0, 24
 add_loop:
@@ -59,9 +55,6 @@ add_loop:
 	ldi _w, high(1375)
 	add a0, w
 	adc a1, _w
-
-	PRINTF	LCD				; print formatted
-.db	"pulse=",FDEC2,a,"usec    ",CR,0
 
 	; moteur
 	mov b0, a0

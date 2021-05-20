@@ -1,7 +1,7 @@
 
 .equ	T2 = 14906*(1+0.034)			; start timout, T2 = (14906 + (14906 * Terr2)) 
 							;>with Terr2 = 4.2% observed with the oscilloscope
-.equ	T1 = 1125*(1+0.036)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
+.equ	T1 = 1125*(1+0.040)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
 							;>Terr1 = 6.% observed with the oscilloscope
 
 read_remote:	
@@ -14,16 +14,15 @@ read_remote:
 	clc						; clearing carry
 	
 addr: 
-	;INVP	PORTB,1
 	P2C		PINF,IR			; move Pin to Carry (P2C, 4 cycles)
 	ROL2	b1,b0			; roll carry into 2-byte reg (ROL2, 2 cycles)
 	sbrc	b0,0			; (branch not taken, 1 cycle; taken 2 cycles)
 	rjmp	rdz_a			; (rjmp, 2 cycles)
-	WAIT_US	(T1 - 4.75)
+	WAIT_US	(T1 - 2)
 	DJNZ	b2,addr			; Decrement and Jump if Not Zero (true, 2 cycles; false, 1 cycle)
 	jmp		next_a			; (jmp, 3 cycles)
 rdz_a:							; read a zero
-	WAIT_US	(2*T1 - 5.75)
+	WAIT_US	(2*T1 - 3)
 	DJNZ	b2,addr			; Decrement and Jump if Not Zero
 
 next_a: 
@@ -34,17 +33,16 @@ next_a:
 	CLR2	b1,b0
 
 data: 
-	;INVP	PORTB,1
 	P2C		PINF,IR			
 	ROL2	b1,b0			
 	sbrc	b0,0			
 	rjmp	rdz_d			
-	WAIT_US	(T1 - 4.75)
+	WAIT_US	(T1 - 2)
 	DJNZ	b2,data			
 	jmp		next_b		
 		
 rdz_d:							
-	WAIT_US	(2*T1 - 5.75)
+	WAIT_US	(2*T1 - 3)
 	DJNZ	b2,data				
 
 next_b:

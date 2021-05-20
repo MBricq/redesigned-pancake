@@ -13,17 +13,20 @@ affichage:
 	_CPI	_w, 3
 	breq	menu_jeu		;if their are 11 -> menu jeu
 
-	PRINTF LCD
-	.db		"Ce menu est faux",0
-
 	rjmp	main
 
 menu_music:			;affiche music
+	sbrc m,3
+	rjmp music_choice
+	
 	PRINTF	LCD
 	.db		"Music",0
 	jmp		main
 
 menu_jeu:			;affiche jeu
+	sbrc	m,3
+	rjmp	jeu
+	
 	PRINTF	LCD
 	.db		"Jeu",0
 	jmp		main
@@ -63,7 +66,7 @@ print_f:			;affiche Fahrenheit
 	rjmp	main
 
 
-; ==== Menu limite temperature====
+; ==== Menu limite temperature ====
 print_limit:		;affiche Limite
 	lds		r19, unit_addr
 	lds		r17, th_addr
@@ -81,4 +84,18 @@ display_cursor:		;show in which sub menu we are: <
 	rcall	LCD_pos
 	ldi		a0, '<'
 	rcall	LCD_putc
+	jmp		main
+
+
+; ==== Menu Jeu ====
+jeu:
+	PRINTF LCD
+	.db		"Ici y a un jeu",0
+	jmp		main
+
+
+; ==== Menu Musique ====
+music_choice:
+	PRINTF LCD
+	.db		"Quelle musique ?",0
 	jmp		main
