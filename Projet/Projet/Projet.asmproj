@@ -119,9 +119,6 @@
     <Compile Include="main.asm">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="moteur.asm">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="musique.asm">
       <SubType>Code</SubType>
     </Compile>
