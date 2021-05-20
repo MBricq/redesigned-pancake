@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Thu May 20 17:20:30 2021
+AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Thu May 20 17:33:37 2021
 
 
 EQU  SIGNATURE_000 0000001e
@@ -946,8 +946,8 @@ EQU  counter_addr 00000203
 EQU  m_eep_addr   00000000
 EQU  th_eep       00000001
 EQU  tl_eep       00000002
-CSEG reset        0000087a
-CSEG ovf0         00000850
+CSEG reset        0000093e
+CSEG ovf0         00000914
 CSEG mul11        00000022
 CSEG mul21        00000045
 CSEG mul22        00000081
@@ -1070,7 +1070,7 @@ CSEG __d41        00000654
 CSEG temp_reset   00000667
 CSEG load_t_eeprom 000006ef
 CSEG update_temp  0000066f
-CSEG WAIT_MS@WAIT_MS@5890 00000677
+CSEG WAIT_MS@WAIT_MS@5897 00000677
 CSEG add_loop     00000693
 CSEG recall_motor 000006b2
 CSEG loop_motor   000006b5
@@ -1113,33 +1113,33 @@ CSEG degre        000007ef
 CSEG print_f      00000805
 CSEG print_c      000007fb
 CSEG display_cursor 00000828
-CSEG menu_bouton  00000893
-CSEG mode_button  000008b5
-CSEG next_menu    0000089b
-CSEG previous_menu 000008a6
-CSEG temp_buttons 000008b9
-CSEG change_sub   000008b1
-CSEG save_m_eeprom 00000951
-CSEG switch_button 000008c1
-CSEG plus_button  000008e1
-CSEG minus_button 000008ea
-CSEG num_pad_buttons 0000091d
-CSEG change_to_fahr 000008d6
-CSEG change_to_cels 000008cd
-CSEG end_of_switch 000008de
-CSEG change_temp  000008f5
-CSEG change_tl    00000909
-CSEG change_th    000008fb
-CSEG save_t       00000916
-CSEG button_one   00000939
-CSEG button_two   0000093b
-CSEG button_three 0000093d
-CSEG button_four  0000093f
-CSEG button_five  00000941
-CSEG button_six   00000943
-CSEG button_seven 00000945
-CSEG button_eight 00000947
-CSEG button_nine  00000949
-CSEG button_zero  0000094b
-CSEG change_unit  0000094d
+CSEG menu_bouton  00000850
+CSEG mode_button  00000872
+CSEG next_menu    00000858
+CSEG previous_menu 00000863
+CSEG temp_buttons 00000876
+CSEG change_sub   0000086e
+CSEG save_m_eeprom 0000090e
+CSEG switch_button 0000087e
+CSEG plus_button  0000089e
+CSEG minus_button 000008a7
+CSEG num_pad_buttons 000008da
+CSEG change_to_fahr 00000893
+CSEG change_to_cels 0000088a
+CSEG end_of_switch 0000089b
+CSEG change_temp  000008b2
+CSEG change_tl    000008c6
+CSEG change_th    000008b8
+CSEG save_t       000008d3
+CSEG button_one   000008f6
+CSEG button_two   000008f8
+CSEG button_three 000008fa
+CSEG button_four  000008fc
+CSEG button_five  000008fe
+CSEG button_six   00000900
+CSEG button_seven 00000902
+CSEG button_eight 00000904
+CSEG button_nine  00000906
+CSEG button_zero  00000908
+CSEG change_unit  0000090a
 CSEG error        0000095c

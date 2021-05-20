@@ -1,3 +1,6 @@
+; file remote.asm   target ATmega128L-4MHz-STK300
+; purpose get the codes sent by the remote
+
 
 .equ	T2 = 14906*(1+0.034)			; start timout, T2 = (14906 + (14906 * Terr2)) 
 							;>with Terr2 = 4.2% observed with the oscilloscope
@@ -9,7 +12,7 @@ read_remote:
 	CLR2	a1,a0
 	ldi		b2,16			; load bit-counter
 	WP1		PINF,IR			; Wait if Pin=1 
-	cli						; The NEC signals as to be read without interrupt
+	cli						; The NEC signals have to be read without interrupt
 	WAIT_US	T2				; wait for timeout
 	clc						; clearing carry
 	

@@ -1,6 +1,5 @@
-; file	wire1_temp2.asm		
-; purpose Dallas 1-wire(R) temperature sensor interfacing: temperature
-; module: M5, input port: PORTB
+; file temp.asm   target ATmega128L-4MHz-STK300
+; purpose call the thermometer to get temperature and update the angular position of the motor
 	
 .include	"Libraries\math_speed.asm"
 .include	"Libraries\lcd.asm"			; include LCD driver routines

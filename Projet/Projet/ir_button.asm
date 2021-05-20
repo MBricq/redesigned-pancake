@@ -1,9 +1,5 @@
-/*
- * ir_button.asm
- *
- *  Created: 20.05.2021 16:59:33
- *   Author: Administrateur
- */ 
+; file ir_button.asm   target ATmega128L-4MHz-STK300
+; purpose link each button from the remote to its function
 
  menu_bouton:				;button code to their function
 	cpi		b0, 0x22		

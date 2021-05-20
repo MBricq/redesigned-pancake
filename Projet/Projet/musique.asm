@@ -1,3 +1,6 @@
+; file musique.asm   target ATmega128L-4MHz-STK300
+; purpose send frequency to the buzzer to produce a music 
+
 
 .include	"macros.asm"	
 .include	"definitions.asm"
