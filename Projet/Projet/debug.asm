@@ -19,12 +19,6 @@ temp_reset:
 ; routine used to update temperature
 update_temp:
 	nop	
-mode_button:
-	mov		w, r6
-	andi	w, 0b11000000
-	subi	w, -(0b01000000)
-	ldi		_w, 0b00111111
-	and		r6, _w
-	add		r6, w
+	com w
 
 	rjmp update_temp

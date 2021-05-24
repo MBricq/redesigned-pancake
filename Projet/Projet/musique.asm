@@ -5,7 +5,7 @@
 
 ;---- music score----
 
-elise:
+elise: ;	Für Elise
 .db		mi3,rem3
 .db		mi3,rem3,mi3,si2,re3,do3,		la2,mi,la,do2,mi2,la2
 .db		si2,mi,som,mi2,som,si2,			do3,mi,la,mi2,mi3,rem3
@@ -21,13 +21,13 @@ elise:
 .db		si2,mi,som,re2,do3,si2,			la2,mi,la,si2,do3,re3
 .db		soupir, soupir, 0
 
-jacques:
+jacques: ;	 Frêre Jacques
 .db		do3,re3,mi3,do3,soupir,do3,		re3,mi3,do3,soupir,mi3,fa3
 .db		so3,so3,soupir,mi3,fa3,so3,		so3,soupir,so3,la3,so3,fa3,mi3,do3
 .db		soupir,so3,la3,so3,fa3,mi3,		do3,soupir,do3,do3,so,so
 .db		do3,do3,soupir,do3,do3,so,		so,do3,do3,soupir,soupir,0
 
-clair:
+clair:	 ;	 Au Clair De La Lune
 .db		do2,do2,do2,re2,mi2,mi2,		re2,re2,do2,mi2,re2,re2
 .db		do2,do2,do2,do2,soupir,			do2,do2,do2
 .db		re2,mi2,mi2,re2,re2,do2,		mi2,re2,re2,do2,do2,do2
@@ -35,11 +35,11 @@ clair:
 .db		si,la,so,so,soupir,soupir,		do2,do2,do2,re2,mi2,mi2
 .db		re2,re2,do2,mi2,re2,re2,		do2,do2,soupir,soupir,soupir,soupir, 0
 
-alarme:
+alarme:	 ;	 Sound for alarm
 .db		do2, fa2, la2, la2, fa2, do2, 0
 
 
-play:
+play:		
 	mov		w, m
 	andi	w, 0b11000000
 
@@ -70,12 +70,12 @@ load_music3:
 load_music4:
 	ldi		zl, low(2*alarme)
 	ldi		zh, high(2*alarme)
-	rjmp play_loop
+	rjmp	play_loop
 
 play_loop:
 	lds		w, alarm_addr	; load the value indicating if the alarm needs to ring (in the 5th bit)
 	sbrs	w, 5
-	rjmp end
+	rjmp	end
 
 	lpm
 	adiw	zl,1

@@ -3,10 +3,10 @@
 
 .include "musique.asm"
 
-.equ	T2 = 14906*(1+0.034)			; start timout, T2 = (14906 + (14906 * Terr2)) 
-							;>with Terr2 = 4.2% observed with the oscilloscope
+.equ	T2 = 14906*(1+0.034); start timout, T2 = (14906 + (14906 * Terr2)) 
+							;>with Terr2 = 3.4% observed with the oscilloscope
 .equ	T1 = 1125*(1+0.040)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
-							;>Terr1 = 6.% observed with the oscilloscope
+							;>Terr1 = 4.0% observed with the oscilloscope
 .equ	PINIR = PINE							
 
 remote_reset:
@@ -20,11 +20,7 @@ read_remote:
 	CLR2	b1,b0			; clear 2-byte register
 	CLR2	a1,a0
 	ldi		b2,16
-wait_remote:
-	sbic	PINIR,IR
-	rjmp	wait_remote
 
-	cli						; The NEC signals have to be read without interrupt
 	WAIT_US	T2				; wait for timeout
 	clc						; clearing carry
 	

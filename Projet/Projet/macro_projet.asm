@@ -34,3 +34,11 @@
 	breq	PC+2			
 	jmp		affichage		;we are in the wrong sub menu
 .endmacro
+
+.macro CHECK_MENU_MUSIC
+	mov		w, m			;load m in w
+	andi	w, 0b00001011	;use a mask to keep only the bits 0,1,3
+	cpi		w, 0b00001010	;see if we are in the the correct sub menu
+	breq	PC+2			
+	jmp		affichage		;we are in the wrong sub menu
+.endmacro

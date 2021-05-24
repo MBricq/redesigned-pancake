@@ -2,6 +2,14 @@
 ; purpose link each button from the remote to its function
 
  menu_bouton:				;button code to their function
+	cpi		b0, 0xa2
+	breq	turn_on_off
+
+	lds		w, on_off_addr
+	cpi		w, 0
+	breq	PC+2
+	rjmp	main
+
 	cpi		b0, 0xe0		
 	breq	enter_sub_button		
 	cpi		b0, 0xC2		
@@ -13,9 +21,19 @@
 	cpi		b0, 0x22
 	breq	test_music
 	cpi		b0, 0xb0
-	breq	mode_button
+	breq	change_music
 	
 	jmp temp_buttons
+
+turn_on_off:
+	lds		w, on_off_addr
+	com		w
+	sts		on_off_addr,w
+
+	cpi		w, 0
+	breq	PC+2
+
+	jmp		affichage
 
 enter_sub_button:				;enter or exit the sub menu (3rd bit of m)
 	ldi		w, 0b00001000	;load the 3rd bit in w
@@ -52,17 +70,19 @@ button_music:
 	jmp		save_m_eeprom
 
 test_music:
+	CHECK_MENU_MUSIC
 	ldi		w, 32
 	sts		alarm_addr, w
-	rcall play
-	jmp affichage
+	rcall	play
+	jmp		affichage
 
 change_sub:					;change the sub menu (4th bit of m)
 	ldi		w, 0b00010000	;load the 4th bit in w
 	eor		m, w			;change the 4th bit of m
 	jmp		save_m_eeprom
 
-mode_button:
+change_music:
+	CHECK_MENU_MUSIC
 	mov		w, m
 	andi	w, 0b11000000
 	subi	w, -(0b01000000)
@@ -90,25 +110,25 @@ switch_button:				;choose btw Celcius and Fahrenheit
 	ldi		w, 0b00000100	;correct sub menu, load the 2nd bit in w
 	eor		m, w			;modify the 2nd bit of m
 
-	lds a0, th_addr
+	lds		a0, th_addr
 
-	sbrc m, 2
-	rjmp change_to_fahr
+	sbrc	m, 2
+	rjmp	change_to_fahr
 
 change_to_cels:
-	rcall fahr_to_c
-	sts th_addr, a0
-	lds a0, tl_addr
-	rcall fahr_to_c
-	sts tl_addr, a0
-	rjmp end_of_switch
+	rcall	fahr_to_c
+	sts		th_addr, a0
+	lds		a0, tl_addr
+	rcall	fahr_to_c
+	sts		tl_addr, a0
+	rjmp	end_of_switch
 
 change_to_fahr:
-	rcall cel_to_f
-	sts th_addr, a0
-	lds a0, tl_addr
-	rcall cel_to_f
-	sts tl_addr, a0
+	rcall	cel_to_f
+	sts		th_addr, a0
+	lds		a0, tl_addr
+	rcall	cel_to_f
+	sts		tl_addr, a0
 
 end_of_switch:
 	rcall	save_t_eeprom
@@ -134,51 +154,51 @@ change_temp:
 	rjmp	change_tl
 
 change_th:
-	add a0, w
+	add		a0, w
 
-	brvc PC+2
-	ldi a0, 125
+	brvc	PC+2
+	ldi		a0, 125
 	
-	ldi w, 50
-	sbrc m, 2
-	ldi w, 125
+	ldi		w, 50
+	sbrc	m, 2
+	ldi		w, 125
 
-	cp a0, w
+	cp		a0, w
 	
-	brlt PC+2
-	mov a0, w
+	brlt	PC+2
+	mov		a0, w
 
-	cp a1, a0
-	brlt save_t
+	cp		a1, a0
+	brlt	save_t
 
-	mov a0, a1
-	subi a0, -1
-	rjmp save_t
+	mov		a0, a1
+	subi	a0, -1
+	rjmp	save_t
 
 change_tl:
 	add		a1, w
 
-	brvc PC+2
-	ldi a1, 125
+	brvc	PC+2
+	ldi		a1, 125
 
-	ldi w, -30
-	sbrc m, 2
-	ldi w, -25
+	ldi		w, -30
+	sbrc	m, 2
+	ldi		w, -25
 
-	cp a1, w
+	cp		a1, w
 	
-	brge PC+2
-	mov a1, w
+	brge	PC+2
+	mov		a1, w
 
-	cp a1, a0
-	brlt save_t
+	cp		a1, a0
+	brlt	save_t
 
-	mov a1, a0
-	subi a1, 1
+	mov		a1, a0
+	subi	a1, 1
 
 save_t:
-	sts th_addr, a0
-	sts tl_addr, a1
+	sts		th_addr, a0
+	sts		tl_addr, a1
 
 	rcall	save_t_eeprom
 	jmp		affichage
@@ -254,8 +274,8 @@ change_unit:						;change the value of the unit in the address
 	jmp		affichage
 
 save_m_eeprom:
-	ldi xh, high(m_eep_addr)
-	ldi xl, low(m_eep_addr)
-	mov a0,m
+	ldi		xh, high(m_eep_addr)
+	ldi		xl, low(m_eep_addr)
+	mov		a0,m
 	rcall	eeprom_store
-	jmp affichage
+	jmp		affichage

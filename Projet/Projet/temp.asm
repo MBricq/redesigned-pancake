@@ -36,65 +36,72 @@ update_temp:
 	mov		a0,c0
 	mov		c1,a1
 
-	; detect si alarme, si oui set bit 5 de alarm_addr a 1
-
-	ldi b0, 24
+	ldi		b0, 24
 add_loop:
-	add a0, c0
-	adc a1, c1
-	subi b0, 1
-	brne add_loop
+	add		a0, c0
+	adc		a1, c1
+	subi	b0, 1
+	brne	add_loop
 
-	DIV22B a0, a1
+	DIV22B	a0, a1
 
-	DIV22B a0, a1
-	DIV22B a0, a1
-	DIV22B a0, a1
-	DIV22B a0, a1
+	DIV22B	a0, a1
+	DIV22B	a0, a1
+	DIV22B	a0, a1
+	DIV22B	a0, a1
 
-	ldi w, low(1375)
-	ldi _w, high(1375)
-	add a0, w
-	adc a1, _w
+	ldi		w, low(1375)
+	ldi		_w, high(1375)
+	add		a0, w
+	adc		a1, _w
 
 	; moteur
-	mov b0, a0
-	mov b1, a1
-	ldi b2, 20
+	mov		b0, a0
+	mov		b1, a1
+	ldi		b2, 20
 
 recall_motor:
-	mov a0, b0
-	mov a1, b1
-	P1	PORTB,SERVO1		; pin=4
+	mov		a0, b0
+	mov		a1, b1
+	P1		PORTB,SERVO1	; pin=4
 loop_motor:
 	SUBI2	a1,a0,0x1
 	brne	loop_motor
 
-	P0	PORTB,SERVO1	; pin=4
+	P0		PORTB,SERVO1	; pin=4
 	WAIT_US	20000
 
-	subi b2, 1
-	brne recall_motor
+	subi	b2, 1
+	brne	recall_motor
+
+	rcall	wire1_reset
+	CA		wire1_write, alarmSearch
+	rcall	wire1_read
+
+	ldi		w, 0b00100000
+	cpi		a0, 0xff
+	breq	PC+2
+	sts		alarm_addr, w
 
 	ret
 
 
 save_t_eeprom:
-	ldi xh, high(th_eep)
-	ldi xl, low(th_eep)
-	lds a0, th_addr
+	ldi		xh, high(th_eep)
+	ldi		xl, low(th_eep)
+	lds		a0, th_addr
 	rcall	eeprom_store
 
-	ldi xh, high(tl_eep)
-	ldi xl, low(tl_eep)
-	lds a0, tl_addr
+	ldi		xh, high(tl_eep)
+	ldi		xl, low(tl_eep)
+	lds		a0, tl_addr
 	rcall	eeprom_store
 
-	sbrc m,2
-	rjmp conv_to_c
+	sbrc	m,2
+	rjmp	conv_to_c
 
-	lds d0, th_addr
-	lds d1, tl_addr
+	lds		d0, th_addr
+	lds		d1, tl_addr
 
 back_to_save:
 	rcall	wire1_reset			; send a reset pulse
@@ -112,27 +119,27 @@ back_to_save:
 	CA		wire1_write, copyScratchpad
 	ret
 conv_to_c:
-	lds a0, th_addr
-	rcall fahr_to_c
-	push a0
-	lds a0, tl_addr
-	rcall fahr_to_c
-	mov d1,a0
-	pop d0
-	rjmp back_to_save
+	lds		a0, th_addr
+	rcall	fahr_to_c
+	push	a0
+	lds		a0, tl_addr
+	rcall	fahr_to_c
+	mov		d1,a0
+	pop		d0
+	rjmp	back_to_save
 
 load_t_eeprom:
-	ldi xh, high(th_eep)
-	ldi xl, low(th_eep)
-	rcall eeprom_load
-	mov d0,a0
-	ldi xh, high(tl_eep)
-	ldi xl, low(tl_eep)
-	rcall eeprom_load
-	mov d1,a0
+	ldi		xh, high(th_eep)
+	ldi		xl, low(th_eep)
+	rcall	eeprom_load
+	mov		d0,a0
+	ldi		xh, high(tl_eep)
+	ldi		xl, low(tl_eep)
+	rcall	eeprom_load
+	mov		d1,a0
 
-	sts th_addr, d0
-	sts tl_addr, d1
+	sts		th_addr, d0
+	sts		tl_addr, d1
 	ret
 
 ; in a0
@@ -142,56 +149,56 @@ cel_to_f:
 	brpl	mul_c_f
 
 ; a0 is negative, we take its absolute value
-	com a0
-	subi a0, (-1)
+	com		a0
+	subi	a0, (-1)
 
 mul_c_f:
-	ldi b0, 9
-	rcall mul11
-	mov a0,c0
-	mov a1,c1
-	ldi b0, 5
-	clr b1
-	rcall div22
+	ldi		b0, 9
+	rcall	mul11
+	mov		a0,c0
+	mov		a1,c1
+	ldi		b0, 5
+	clr		b1
+	rcall	div22
 	
-	mov a0,c0
+	mov		a0,c0
 	brtc	add_c_f
 
 ; a0 is turned back into a negative number
-	com a0
-	subi a0, (-1)
+	com		a0
+	subi	a0, (-1)
 
 add_c_f:
-	subi a0, (-32) ; a0 : T in F
+	subi	a0, (-32) ; a0 : T in F
 	ret
 
 ; in a0
 fahr_to_c:
-	subi a0, 32 
+	subi	a0, 32 
 
 	bst		a0,7
 	cpi		a0, 0
 	brpl	mul_f_c
 
 ; a0 is negative, we take its absolute value
-	com a0
-	subi a0, (-1)
+	com		a0
+	subi	a0, (-1)
 
 mul_f_c:
-	ldi b0, 5
-	rcall mul11
-	mov a0,c0
-	mov a1,c1
-	ldi b0, 9
-	clr b1
-	rcall div22
+	ldi		b0, 5
+	rcall	mul11
+	mov		a0,c0
+	mov		a1,c1
+	ldi		b0, 9
+	clr		b1
+	rcall	div22
 	
 	mov a0,c0
 	brtc	end_f_c
 
 ; a0 is turned back into a negative number
-	com a0
-	subi a0, (-1)
+	com		a0
+	subi	a0, (-1)
 
 end_f_c:
 	ret

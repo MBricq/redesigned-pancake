@@ -14,6 +14,8 @@
 .equ	unit_addr = 0x0202		; address to store the unit
 .equ	counter_addr = 0x0203	; address to store the counter for the interrupt
 .equ	alarm_addr = 0x0204		; address to store the alarm 
+.equ	on_off_addr = 0x205		; address to store if screen is on/off
+
 .equ	m_eep_addr = 0x0000		; eeprom address to store the menu register
 .equ	th_eep = 0x0001			; eeprom address to store the high temp
 .equ	tl_eep = 0x0002			; eeprom address to store the low temp
@@ -38,6 +40,15 @@
 .include	"ir_button.asm"
 
 ; ==== Code ==== 
+
+ext_int7:
+	push	w
+	in		_sreg, SREG
+	ldi		w, 0
+	sts		alarm_addr,w
+	out		SREG,_sreg
+	pop		w
+	reti
 
 ovf0:
 	; this counter is used to slow down the timer to 40s instead of 8s						
@@ -84,15 +95,6 @@ ovf0:
 	pop		w
 	reti
 
-ext_int7:
-	push w
-	in _sreg, SREG
-	ldi w, 0
-	sts alarm_addr,w
-	out SREG,_sreg
-	pop w
-	reti
-
 reset:	
 	LDSP	RAMEND			; load stack pointer (SP)
 	
@@ -107,10 +109,14 @@ reset:
 	sts		unit_addr,w
 	ldi		w,5
 	sts		counter_addr,w
+	ldi		w,0
+	sts		alarm_addr,w
+	ldi		w,0
+	sts		on_off_addr,w
 
 	; set up interrupt
-	OUTI EIMSK, 0b10000000
-	OUTI EICRB, 0b10000000
+	OUTI	EIMSK, 0b10000000
+	OUTI	EICRB, 0b10000000
 
 	; call the reset 
 	rcall	remote_reset
@@ -123,6 +129,7 @@ reset:
 	OUTI	TCCR0,7			; CS0=7 CK/1024
 	OUTI	TIMSK, 1<<TOIE0 ; set up the timer as overflow
 	sei		
+
 	rcall	update_temp
 
 	rjmp	affichage		; turn on the screen
@@ -134,6 +141,10 @@ main:
 	sbrc	w, 5			; if one of the two is 0, no need to play alarm	
 	rcall	play			; otherwise, play
 
+	sbic	PINIR,IR
+	rjmp	main
+
+	cli						; The NEC signals have to be read without interrupt
 	rcall	read_remote		; wait for the user to press a button
 	sei						; the interrupt is disabled in read_remote we reactivate it here
 
