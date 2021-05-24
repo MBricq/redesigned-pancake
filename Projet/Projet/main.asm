@@ -13,6 +13,7 @@
 .equ	tl_addr = 0x0201		; address to store the low temp
 .equ	unit_addr = 0x0202		; address to store the unit
 .equ	counter_addr = 0x0203	; address to store the counter for the interrupt
+.equ	alarm_addr = 0x0204		; address to store the alarm 
 .equ	m_eep_addr = 0x0000		; eeprom address to store the menu register
 .equ	th_eep = 0x0001			; eeprom address to store the high temp
 .equ	tl_eep = 0x0002			; eeprom address to store the low temp
@@ -21,9 +22,12 @@
 
 .org	0
 	jmp		reset
-
+.org	0x10
+	jmp ext_int7
 .org	OVF0addr				;overflow timer 0
 	jmp		ovf0
+
+
 
 ; ==== Include Other Files ==== 
 
@@ -80,6 +84,15 @@ ovf0:
 	pop		w
 	reti
 
+ext_int7:
+	push w
+	in _sreg, SREG
+	ldi w, 0
+	sts alarm_addr,w
+	out SREG,_sreg
+	pop w
+	reti
+
 reset:	
 	LDSP	RAMEND			; load stack pointer (SP)
 	
@@ -95,10 +108,17 @@ reset:
 	ldi		w,5
 	sts		counter_addr,w
 
+	; set up interrupt
+	OUTI EIMSK, 0b10000000
+	OUTI EICRB, 0b10000000
+
 	; call the reset 
+	rcall	remote_reset
 	rcall	temp_reset	
 	rcall	LCD_init		; initialize LCD
+	rcall	store_custom_char
 
+	; set up timer
 	OUTI	ASSR, (1<<AS0)	; clock from TOSC1 (external)
 	OUTI	TCCR0,7			; CS0=7 CK/1024
 	OUTI	TIMSK, 1<<TOIE0 ; set up the timer as overflow
@@ -108,6 +128,12 @@ reset:
 	rjmp	affichage		; turn on the screen
 
 main:
+
+	lds		w, alarm_addr	; load the value indicating if the alarm needs to ring (in the 5th bit)
+	and		w, m			; the 5th bit of m indicates if the alarm is activated by user
+	sbrc	w, 5			; if one of the two is 0, no need to play alarm	
+	rcall	play			; otherwise, play
+
 	rcall	read_remote		; wait for the user to press a button
 	sei						; the interrupt is disabled in read_remote we reactivate it here
 

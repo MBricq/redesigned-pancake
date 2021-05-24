@@ -1,23 +1,35 @@
 ; file remote.asm   target ATmega128L-4MHz-STK300
 ; purpose get the codes sent by the remote
 
+.include "musique.asm"
 
 .equ	T2 = 14906*(1+0.034)			; start timout, T2 = (14906 + (14906 * Terr2)) 
 							;>with Terr2 = 4.2% observed with the oscilloscope
 .equ	T1 = 1125*(1+0.040)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
 							;>Terr1 = 6.% observed with the oscilloscope
+.equ	PINIR = PINE							
 
-read_remote:	
+remote_reset:
+	cbi		DDRE,IR			; set IR as input
+	sbi		DDRE,SPEAKER	; set buzzer as output
+	ldi		w, 0
+	sts		alarm_addr, w
+	ret
+
+read_remote:
 	CLR2	b1,b0			; clear 2-byte register
 	CLR2	a1,a0
-	ldi		b2,16			; load bit-counter
-	WP1		PINF,IR			; Wait if Pin=1 
+	ldi		b2,16
+wait_remote:
+	sbic	PINIR,IR
+	rjmp	wait_remote
+
 	cli						; The NEC signals have to be read without interrupt
 	WAIT_US	T2				; wait for timeout
 	clc						; clearing carry
 	
 addr: 
-	P2C		PINF,IR			; move Pin to Carry (P2C, 4 cycles)
+	P2C		PINIR,IR			; move Pin to Carry (P2C, 4 cycles)
 	ROL2	b1,b0			; roll carry into 2-byte reg (ROL2, 2 cycles)
 	sbrc	b0,0			; (branch not taken, 1 cycle; taken 2 cycles)
 	rjmp	rdz_a			; (rjmp, 2 cycles)
@@ -36,7 +48,7 @@ next_a:
 	CLR2	b1,b0
 
 data: 
-	P2C		PINF,IR			
+	P2C		PINIR,IR			
 	ROL2	b1,b0			
 	sbrc	b0,0			
 	rjmp	rdz_d			

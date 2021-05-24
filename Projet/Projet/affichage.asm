@@ -1,6 +1,7 @@
 ; file affichage.asm   target ATmega128L-4MHz-STK300
 ; purpose display on the LCD screen the correct menu
 
+
 ; ====	Display Routine ====
 
 affichage:
@@ -24,10 +25,11 @@ menu_music:
 	; affiche music
 	sbrc	m,3
 	rjmp	music_choice
-	
+
 	PRINTF	LCD
 	.db		"Music",0
-	jmp		main
+	rjmp music_on_off
+	
 
 menu_jeu:			
 	; affiche jeu
@@ -94,7 +96,7 @@ display_cursor:
 	sbrc	m, 4
 	add		a0, w
 	rcall	LCD_pos
-	ldi		a0, '<'
+	ldi		a0, 127
 	rcall	LCD_putc
 	jmp		main
 
@@ -105,7 +107,96 @@ jeu:
 	jmp		main
 
 ; ==== Menu Musique ====
-music_choice:
-	PRINTF LCD
-	.db		"Quelle musique ?",0
+music_on_off:
+	ldi		a0, 0x0f
+	rcall	LCD_pos
+	sbrs	m, 5
+	rjmp	print_off
+
+	ldi		a0,1
+	rcall	LCD_putc
 	jmp		main
+
+print_off:
+	ldi		a0,2
+	rcall	LCD_putc
+	jmp		main
+
+music_choice:
+	PRINTF	LCD
+	.db		"Quelle musique ?",LF,0
+
+	mov		w, m
+	andi	w, 0b11000000
+
+	cpi		w, 0b00000000
+	breq	music1
+	cpi		w, 0b01000000
+	breq	music2
+	cpi		w, 0b10000000
+	breq	music3
+	cpi		w, 0b11000000
+	breq	music4
+
+music1:
+	PRINTF	LCD
+	.db		"Fur Elise",0
+	jmp		main
+
+music2:
+	PRINTF	LCD
+	.db		"Frere Jacques",0
+	jmp		main
+
+music3:
+	PRINTF	LCD
+	.db		"Au clair de la lune",0
+	jmp		main
+
+music4:
+	PRINTF	LCD
+	.db		"Alarme",0
+	jmp		main
+
+
+note_music:
+.db 0b00000100, 0b00000110, 0b00000101, 0b00000101, 0b00000100, 0b00011100, 0b00011100, 0b00000000
+
+note_music_off:
+.db 0b11111011, 0b11111001, 0b11111010, 0b11111010, 0b11111011, 0b11100011, 0b11100011, 0b11111111
+
+store_custom_char: 
+	lds		u, LCD_IR	
+	JB1		u,7,store_custom_char	
+	
+	ldi		r16, 0b01001000
+	sts		LCD_IR,r16
+	ldi		zl,low(2*note_music)
+	ldi		zh,high(2*note_music)
+	ldi		r18,8
+	rcall	store_lcd_loop
+
+store_music_off_char:
+	lds		u, LCD_IR	
+	JB1		u,7,store_music_off_char
+
+	ldi		r16, 0b01010000
+	sts		LCD_IR,r16
+	ldi		zl,low(2*note_music_off)
+	ldi		zh,high(2*note_music_off)
+	ldi		r18,8
+	rcall	store_lcd_loop
+
+	ret
+
+store_lcd_loop: 
+  	lds		u, LCD_IR	
+	JB1		u,7,store_lcd_loop	
+	lpm
+	mov		r16,r0
+	adiw	zl,1
+	sts		LCD_DR, r16
+	dec		r18
+	brne	store_lcd_loop
+	rcall	LCD_home	
+	ret

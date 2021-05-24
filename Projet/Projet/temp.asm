@@ -36,6 +36,8 @@ update_temp:
 	mov		a0,c0
 	mov		c1,a1
 
+	; detect si alarme, si oui set bit 5 de alarm_addr a 1
+
 	ldi b0, 24
 add_loop:
 	add a0, c0

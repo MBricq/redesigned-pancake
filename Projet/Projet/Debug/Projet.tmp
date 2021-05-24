@@ -19,6 +19,8 @@
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE>
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\macro_projet.asm</FILE>
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE>
+  <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE>
+  <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE>
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE>
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE>
   <FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE>
@@ -34,8 +36,9 @@
   <FILE>Projet.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>81</LINE></reset>
-  <ovf0><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>38</LINE></ovf0>
+  <reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>96</LINE></reset>
+  <ext_int7><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>87</LINE></ext_int7>
+  <ovf0><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>42</LINE></ovf0>
   <mul11><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\math_speed.asm</FILE><LINE>13</LINE></mul11>
   <mul21><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\math_speed.asm</FILE><LINE>33</LINE></mul21>
   <mul22><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\math_speed.asm</FILE><LINE>59</LINE></mul22>
@@ -117,77 +120,110 @@
   <__m41><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE><LINE>436</LINE></__m41>
   <__d41><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE><LINE>452</LINE></__d41>
   <temp_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>11</LINE></temp_reset>
-  <load_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>122</LINE></load_t_eeprom>
+  <load_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>124</LINE></load_t_eeprom>
   <update_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>23</LINE></update_temp>
-  <add_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>40</LINE></add_loop>
-  <recall_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>63</LINE></recall_motor>
-  <loop_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>67</LINE></loop_motor>
-  <save_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>80</LINE></save_t_eeprom>
+  <add_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>42</LINE></add_loop>
+  <recall_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>65</LINE></recall_motor>
+  <loop_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>69</LINE></loop_motor>
+  <save_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>82</LINE></save_t_eeprom>
   <eeprom_store><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>4</LINE></eeprom_store>
-  <conv_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>112</LINE></conv_to_c>
-  <back_to_save><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>97</LINE></back_to_save>
-  <fahr_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>167</LINE></fahr_to_c>
+  <conv_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>114</LINE></conv_to_c>
+  <back_to_save><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>99</LINE></back_to_save>
+  <fahr_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>169</LINE></fahr_to_c>
   <eeprom_load><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>24</LINE></eeprom_load>
-  <cel_to_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>137</LINE></cel_to_f>
-  <mul_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>146</LINE></mul_c_f>
-  <add_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>162</LINE></add_c_f>
-  <mul_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>178</LINE></mul_f_c>
-  <end_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>194</LINE></end_f_c>
-  <read_remote><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>10</LINE></read_remote>
-  <addr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>19</LINE></addr>
-  <rdz_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>27</LINE></rdz_a>
-  <next_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>31</LINE></next_a>
-  <data><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>38</LINE></data>
-  <rdz_d><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>47</LINE></rdz_d>
-  <next_b><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>51</LINE></next_b>
-  <data_proc01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>54</LINE></data_proc01>
-  <data_proc02><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>68</LINE></data_proc02>
-  <display_repeat><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>64</LINE></display_repeat>
-  <display_error><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>80</LINE></display_error>
-  <display_correct><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>76</LINE></display_correct>
+  <cel_to_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>139</LINE></cel_to_f>
+  <mul_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>148</LINE></mul_c_f>
+  <add_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>164</LINE></add_c_f>
+  <mul_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>180</LINE></mul_f_c>
+  <end_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>196</LINE></end_f_c>
+  <sound><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>4</LINE></sound>
+  <sound_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>25</LINE></sound_off>
+  <sound1><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>13</LINE></sound1>
+  <wait9us><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>35</LINE></wait9us>
+  <wait8us><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>37</LINE></wait8us>
+  <wait4us><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>38</LINE></wait4us>
+  <wait2us><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>39</LINE></wait2us>
+  <elise><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>8</LINE></elise>
+  <jacques><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>24</LINE></jacques>
+  <clair><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>30</LINE></clair>
+  <alarme><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>38</LINE></alarme>
+  <play><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>42</LINE></play>
+  <load_music1><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>55</LINE></load_music1>
+  <load_music2><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>60</LINE></load_music2>
+  <load_music3><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>65</LINE></load_music3>
+  <load_music4><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>70</LINE></load_music4>
+  <play_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>75</LINE></play_loop>
+  <end><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>94</LINE></end>
+  <remote_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>12</LINE></remote_reset>
+  <read_remote><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>19</LINE></read_remote>
+  <wait_remote><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>23</LINE></wait_remote>
+  <addr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>31</LINE></addr>
+  <rdz_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>39</LINE></rdz_a>
+  <next_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>43</LINE></next_a>
+  <data><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>50</LINE></data>
+  <rdz_d><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>59</LINE></rdz_d>
+  <next_b><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>63</LINE></next_b>
+  <data_proc01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>66</LINE></data_proc01>
+  <data_proc02><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>80</LINE></data_proc02>
+  <display_repeat><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>76</LINE></display_repeat>
+  <display_error><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>92</LINE></display_error>
+  <display_correct><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>88</LINE></display_correct>
   <eeprom_cli><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>17</LINE></eeprom_cli>
-  <affichage><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>4</LINE></affichage>
-  <menu_set_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>37</LINE></menu_set_temp>
-  <menu_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>45</LINE></menu_temp>
-  <menu_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>21</LINE></menu_music>
-  <menu_jeu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>29</LINE></menu_jeu>
-  <main><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>108</LINE></main>
-  <music_choice><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>101</LINE></music_choice>
-  <jeu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>94</LINE></jeu>
-  <print_limit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>73</LINE></print_limit>
-  <degre><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>54</LINE></degre>
-  <print_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>66</LINE></print_f>
-  <print_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>61</LINE></print_c>
-  <display_cursor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>82</LINE></display_cursor>
+  <affichage><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>7</LINE></affichage>
+  <menu_set_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>43</LINE></menu_set_temp>
+  <menu_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>52</LINE></menu_temp>
+  <menu_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>24</LINE></menu_music>
+  <menu_jeu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>34</LINE></menu_jeu>
+  <main><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>130</LINE></main>
+  <music_choice><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>125</LINE></music_choice>
+  <music_on_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>110</LINE></music_on_off>
+  <jeu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>104</LINE></jeu>
+  <print_limit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>83</LINE></print_limit>
+  <degre><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>62</LINE></degre>
+  <print_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>75</LINE></print_f>
+  <print_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>69</LINE></print_c>
+  <display_cursor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>92</LINE></display_cursor>
+  <print_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>120</LINE></print_off>
+  <music1><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>141</LINE></music1>
+  <music2><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>146</LINE></music2>
+  <music3><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>151</LINE></music3>
+  <music4><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>156</LINE></music4>
+  <note_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>162</LINE></note_music>
+  <note_music_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>165</LINE></note_music_off>
+  <store_custom_char><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>168</LINE></store_custom_char>
+  <store_lcd_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>192</LINE></store_lcd_loop>
+  <store_music_off_char><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>179</LINE></store_music_off_char>
   <menu_bouton><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>4</LINE></menu_bouton>
-  <mode_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>43</LINE></mode_button>
-  <next_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>14</LINE></next_menu>
-  <previous_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>26</LINE></previous_menu>
-  <temp_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>49</LINE></temp_buttons>
-  <change_sub><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>38</LINE></change_sub>
-  <save_m_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>231</LINE></save_m_eeprom>
-  <switch_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>59</LINE></switch_button>
-  <plus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>92</LINE></plus_button>
-  <minus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>97</LINE></minus_button>
-  <num_pad_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>162</LINE></num_pad_buttons>
-  <change_to_fahr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>81</LINE></change_to_fahr>
-  <change_to_cels><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>73</LINE></change_to_cels>
-  <end_of_switch><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>88</LINE></end_of_switch>
-  <change_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>104</LINE></change_temp>
-  <change_tl><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>133</LINE></change_tl>
-  <change_th><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>111</LINE></change_th>
-  <save_t><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>154</LINE></save_t>
-  <button_one><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>187</LINE></button_one>
-  <button_two><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>191</LINE></button_two>
-  <button_three><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>195</LINE></button_three>
-  <button_four><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>199</LINE></button_four>
-  <button_five><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>203</LINE></button_five>
-  <button_six><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>207</LINE></button_six>
-  <button_seven><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>211</LINE></button_seven>
-  <button_eight><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>215</LINE></button_eight>
-  <button_nine><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>219</LINE></button_nine>
-  <button_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>223</LINE></button_zero>
-  <change_unit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>227</LINE></change_unit>
-  <error><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>117</LINE></error>
+  <enter_sub_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>20</LINE></enter_sub_button>
+  <next_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>25</LINE></next_menu>
+  <previous_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>37</LINE></previous_menu>
+  <button_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>49</LINE></button_music>
+  <test_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>54</LINE></test_music>
+  <mode_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>65</LINE></mode_button>
+  <temp_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>74</LINE></temp_buttons>
+  <save_m_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>256</LINE></save_m_eeprom>
+  <change_sub><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>60</LINE></change_sub>
+  <switch_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>84</LINE></switch_button>
+  <plus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>117</LINE></plus_button>
+  <minus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>122</LINE></minus_button>
+  <num_pad_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>187</LINE></num_pad_buttons>
+  <change_to_fahr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>106</LINE></change_to_fahr>
+  <change_to_cels><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>98</LINE></change_to_cels>
+  <end_of_switch><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>113</LINE></end_of_switch>
+  <change_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>129</LINE></change_temp>
+  <change_tl><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>158</LINE></change_tl>
+  <change_th><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>136</LINE></change_th>
+  <save_t><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>179</LINE></save_t>
+  <button_one><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>212</LINE></button_one>
+  <button_two><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>216</LINE></button_two>
+  <button_three><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>220</LINE></button_three>
+  <button_four><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>224</LINE></button_four>
+  <button_five><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>228</LINE></button_five>
+  <button_six><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>232</LINE></button_six>
+  <button_seven><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>236</LINE></button_seven>
+  <button_eight><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>240</LINE></button_eight>
+  <button_nine><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>244</LINE></button_nine>
+  <button_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>248</LINE></button_zero>
+  <change_unit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>252</LINE></change_unit>
  </LABELS>
 </ASSEMBLER_INFO>

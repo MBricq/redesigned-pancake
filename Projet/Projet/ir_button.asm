@@ -2,14 +2,25 @@
 ; purpose link each button from the remote to its function
 
  menu_bouton:				;button code to their function
-	cpi		b0, 0x22		
-	breq	mode_button		;>|
+	cpi		b0, 0xe0		
+	breq	enter_sub_button		
 	cpi		b0, 0xC2		
 	breq	next_menu		;>>|
 	cpi		b0, 0x02
 	breq	previous_menu	;|<<
+	cpi		b0, 0xe2
+	breq	button_music
+	cpi		b0, 0x22
+	breq	test_music
+	cpi		b0, 0xb0
+	breq	mode_button
 	
 	jmp temp_buttons
+
+enter_sub_button:				;enter or exit the sub menu (3rd bit of m)
+	ldi		w, 0b00001000	;load the 3rd bit in w
+	eor		m, w			;change the 3rd bit of m
+	jmp		save_m_eeprom
 
 next_menu:					;change menu (two last bits of m) to the right
 	sbrc	m,3				;enter in the sub menu 
@@ -35,16 +46,30 @@ previous_menu:				;change menu (two last bits of m) to the left
 	add		m,_w			;assemble the unmodified part with the last two bits
 	jmp		save_m_eeprom
 
+button_music:
+	ldi		w, 0b00100000
+	eor		m, w
+	jmp		save_m_eeprom
+
+test_music:
+	ldi		w, 32
+	sts		alarm_addr, w
+	rcall play
+	jmp affichage
+
 change_sub:					;change the sub menu (4th bit of m)
 	ldi		w, 0b00010000	;load the 4th bit in w
 	eor		m, w			;change the 4th bit of m
 	jmp		save_m_eeprom
 
-mode_button:				;enter or exit the sub menu (3rd bit of m)
-	ldi		w, 0b00001000	;load the 3rd bit in w
-	eor		m, w			;change the 3rd bit of m
+mode_button:
+	mov		w, m
+	andi	w, 0b11000000
+	subi	w, -(0b01000000)
+	ldi		_w, 0b00111111
+	and		m, _w
+	add		m, w
 	jmp		save_m_eeprom
-
 
 temp_buttons:
 	cpi		b0, 0x98

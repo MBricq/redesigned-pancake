@@ -8,8 +8,8 @@ sound:
 	mov	b1,b0		; duration high byte = b
 	clr	b0		; duration  low byte = 0
 	clr	a1		; period high byte = a
-	tst	a0
-	breq	sound_off	; if a0=0 then no sound	
+	cpi	a0,1
+	breq	sound_off	; if a0=1 then no sound	
 sound1:
 	mov	w,a0		
 	rcall	wait9us		; 9us
@@ -42,11 +42,14 @@ wait2us:nop
 ; === calculation of the musical scale ===
  
 ; period (10us)	= 100'000/freq(Hz)
+.equ	soupir = 1
+
 .equ	do	= 100000/517	; (517 Hz)
 .equ	dom	= do*944/1000	; do major
 .equ	re	= do*891/1000
 .equ	rem	= do*841/1000	; re major
 .equ	mi	= do*794/1000
+.equ	mib	= do*754/1000
 .equ	fa	= do*749/1000
 .equ	fam	= do*707/1000	; fa major
 .equ	so	= do*667/1000
