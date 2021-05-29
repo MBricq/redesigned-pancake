@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Sat May 29 15:03:37 2021
+AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Sat May 29 18:07:15 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.1.130\avrasm\inc\m128def.inc'
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(6): Including file 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\macros.asm'
@@ -5442,6 +5442,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(40): I
                                  ; at addresses : th_eep and tl_eep 
                                  ; from SRAM addresses : th_addr and tl_addr
                                  ; uses the 3rd bit of r6 to determine if th and tl are in °C (=0) or in °F (=1)
+                                 ; mod : xh, xl, a0, a1, d0, d1, c0, c1, b0, b1
                                  save_t_eeprom:
 0006d4 e0b0                      	ldi		xh, high(th_eep)
 0006d5 e0a1                      	ldi		xl, low(th_eep)
@@ -5903,6 +5904,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
                                  
                                  ; reads the remote signal from PINIR
                                  ; out : b0 the code pressed or 0 if there is an error or repeat
+                                 ; mod : a0, a1, b1, b2, d0, d1, d3, u, w
                                  read_remote:
 000803 1b77
 000804 2766                      	CLR2	b1,b0			; clear 2-byte register

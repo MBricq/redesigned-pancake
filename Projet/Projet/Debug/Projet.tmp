@@ -120,22 +120,22 @@
   <__m41><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE><LINE>436</LINE></__m41>
   <__d41><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\printf.asm</FILE><LINE>452</LINE></__d41>
   <temp_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>11</LINE></temp_reset>
-  <load_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>150</LINE></load_t_eeprom>
+  <load_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>151</LINE></load_t_eeprom>
   <update_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>25</LINE></update_temp>
   <add_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>43</LINE></add_loop>
   <recall_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>71</LINE></recall_motor>
   <loop_motor><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>75</LINE></loop_motor>
-  <save_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>103</LINE></save_t_eeprom>
+  <save_t_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>104</LINE></save_t_eeprom>
   <eeprom_store><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>4</LINE></eeprom_store>
-  <conv_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>137</LINE></conv_to_c>
-  <back_to_save><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>121</LINE></back_to_save>
-  <fahr_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>197</LINE></fahr_to_c>
+  <conv_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>138</LINE></conv_to_c>
+  <back_to_save><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>122</LINE></back_to_save>
+  <fahr_to_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>198</LINE></fahr_to_c>
   <eeprom_load><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>24</LINE></eeprom_load>
-  <cel_to_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>166</LINE></cel_to_f>
-  <mul_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>175</LINE></mul_c_f>
-  <add_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>191</LINE></add_c_f>
-  <mul_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>208</LINE></mul_f_c>
-  <end_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>224</LINE></end_f_c>
+  <cel_to_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>167</LINE></cel_to_f>
+  <mul_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>176</LINE></mul_c_f>
+  <add_c_f><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>192</LINE></add_c_f>
+  <mul_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>209</LINE></mul_f_c>
+  <end_f_c><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\temp.asm</FILE><LINE>225</LINE></end_f_c>
   <sound><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>4</LINE></sound>
   <sound_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>25</LINE></sound_off>
   <sound1><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries/sound.asm</FILE><LINE>13</LINE></sound1>
@@ -155,18 +155,18 @@
   <play_loop><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>78</LINE></play_loop>
   <end><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\musique.asm</FILE><LINE>99</LINE></end>
   <remote_reset><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>13</LINE></remote_reset>
-  <read_remote><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>22</LINE></read_remote>
-  <addr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>30</LINE></addr>
-  <rdz_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>38</LINE></rdz_a>
-  <next_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>42</LINE></next_a>
-  <data><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>49</LINE></data>
-  <rdz_d><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>58</LINE></rdz_d>
-  <next_b><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>62</LINE></next_b>
-  <data_proc01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>65</LINE></data_proc01>
-  <data_proc02><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>79</LINE></data_proc02>
-  <code_repeat><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>75</LINE></code_repeat>
-  <code_error><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>91</LINE></code_error>
-  <code_correct><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>87</LINE></code_correct>
+  <read_remote><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>23</LINE></read_remote>
+  <addr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>31</LINE></addr>
+  <rdz_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>39</LINE></rdz_a>
+  <next_a><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>43</LINE></next_a>
+  <data><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>50</LINE></data>
+  <rdz_d><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>59</LINE></rdz_d>
+  <next_b><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>63</LINE></next_b>
+  <data_proc01><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>66</LINE></data_proc01>
+  <data_proc02><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>80</LINE></data_proc02>
+  <code_repeat><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>76</LINE></code_repeat>
+  <code_error><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>92</LINE></code_error>
+  <code_correct><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm</FILE><LINE>88</LINE></code_correct>
   <eeprom_cli><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\eeprom.asm</FILE><LINE>17</LINE></eeprom_cli>
   <affichage><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>7</LINE></affichage>
   <main><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm</FILE><LINE>137</LINE></main>
