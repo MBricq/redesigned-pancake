@@ -19,7 +19,9 @@ temp_reset:
 
 	ret
 
-; routine used to update temperature
+; routine used to update temperature, needs the motor Futaba S3003 in PORT B
+; changes the value at alarm_addr in the SRAM to indicate if the limits of temp are not respected
+; it changes its 5th bit
 update_temp:
 	rcall	wire1_reset				; send a reset pulse
 	CA		wire1_write, skipROM	; skip ROM identification
@@ -36,6 +38,7 @@ update_temp:
 	mov		a0,c0
 	mov		c1,a1
 
+	; do the calculation to get the length of the pulse to send to the motor 
 	ldi		b0, 24
 add_loop:
 	add		a0, c0
@@ -45,35 +48,42 @@ add_loop:
 
 	DIV22B	a0, a1
 
+	; get rid of the last 4 digits as we need an integer
 	DIV22B	a0, a1
 	DIV22B	a0, a1
 	DIV22B	a0, a1
 	DIV22B	a0, a1
 
-	ldi		w, low(1375)
-	ldi		_w, high(1375)
+	COM2B	a0, a1
+
+	ldi		w, low(1625)
+	ldi		_w, high(1625)
 	add		a0, w
 	adc		a1, _w
 
-	; moteur
+	; Copy the values in the right registers
 	mov		b0, a0
 	mov		b1, a1
 	ldi		b2, 20
 
+	; To be sure the motor reaches the required position, we repeat the instruction
+	; long enough for it to go from 0 to 90°
 recall_motor:
 	mov		a0, b0
 	mov		a1, b1
-	P1		PORTB,SERVO1	; pin=4
+	P1		PORTB,SERVO1	; pin 4 at 1
 loop_motor:
 	SUBI2	a1,a0,0x1
 	brne	loop_motor
 
-	P0		PORTB,SERVO1	; pin=4
+	P0		PORTB,SERVO1	; pin 4 at 0 after the pulse width is reached
 	WAIT_US	20000
 
 	subi	b2, 1
-	brne	recall_motor
+	brne	recall_motor	; do another pulse if necessary
 
+
+	; Check if the alarm needs to ring
 	rcall	wire1_reset
 	CA		wire1_write, alarmSearch
 	rcall	wire1_read
@@ -86,6 +96,11 @@ loop_motor:
 	ret
 
 
+; Routine to save the Th and Tl in the EEPROM
+; at addresses : th_eep and tl_eep 
+; from SRAM addresses : th_addr and tl_addr
+; uses the 3rd bit of r6 to determine if th and tl are in °C (=0) or in °F (=1)
+; mod : xh, xl, a0, a1, d0, d1, c0, c1, b0, b1
 save_t_eeprom:
 	ldi		xh, high(th_eep)
 	ldi		xl, low(th_eep)
@@ -103,6 +118,7 @@ save_t_eeprom:
 	lds		d0, th_addr
 	lds		d1, tl_addr
 
+; also changes the scratchpad and eeprom of the thermometer (in Celsius)
 back_to_save:
 	rcall	wire1_reset			; send a reset pulse
 	CA		wire1_write, skipROM
@@ -118,6 +134,7 @@ back_to_save:
 	CA		wire1_write, skipROM
 	CA		wire1_write, copyScratchpad
 	ret
+; if the temps are in °F, converts them in °C for the thermometer
 conv_to_c:
 	lds		a0, th_addr
 	rcall	fahr_to_c
@@ -128,6 +145,9 @@ conv_to_c:
 	pop		d0
 	rjmp	back_to_save
 
+; Routine to load the Th and Tl from the EEPROM
+; from addresses : th_eep and tl_eep 
+; to SRAM addresses : th_addr and tl_addr
 load_t_eeprom:
 	ldi		xh, high(th_eep)
 	ldi		xl, low(th_eep)
@@ -142,7 +162,8 @@ load_t_eeprom:
 	sts		tl_addr, d1
 	ret
 
-; in a0
+; Routine to transform a value from °C to °F
+; in : a0 the temperature
 cel_to_f:
 	bst		a0,7
 	cpi		a0, 0
@@ -172,7 +193,8 @@ add_c_f:
 	subi	a0, (-32) ; a0 : T in F
 	ret
 
-; in a0
+; Routine to transform a value from °F to °C
+; in : a0 the temperature
 fahr_to_c:
 	subi	a0, 32 
 

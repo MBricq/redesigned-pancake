@@ -38,7 +38,9 @@ clair:	 ;	 Au Clair De La Lune
 alarme:	 ;	 Sound for alarm
 .db		do2, fa2, la2, la2, fa2, do2, 0
 
-
+; start playing one of the score, gets from r6 which of the 4
+; the encoding of the choice is in the 2 MSBs
+; needs the address alarm_addr in the SRAM to determine if the music needs to be played, the 5th bit = 1 --> playing
 play:		
 	mov		w, m
 	andi	w, 0b11000000
@@ -72,15 +74,17 @@ load_music4:
 	ldi		zh, high(2*alarme)
 	rjmp	play_loop
 
+; start the music here
 play_loop:
 	lds		w, alarm_addr	; load the value indicating if the alarm needs to ring (in the 5th bit)
 	sbrs	w, 5
 	rjmp	end
 
+	; load the music note
 	lpm
 	adiw	zl,1
 	tst		r0
-	breq	play
+	breq	play			; if reaches the end of the score, start again
 	mov		a0,r0
 
 	ldi		b0,100
@@ -88,10 +92,11 @@ play_loop:
 	brne	PC+2
 	ldi		b0, 25
 	
+	; plays the note
 	rcall	sound
 	rjmp	play_loop
 
 end:
 	ldi		w, 0
-	sts		alarm_addr, w
+	sts		alarm_addr, w	; stops the music from restarting
 	ret

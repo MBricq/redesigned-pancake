@@ -141,14 +141,14 @@ main:
 	sbrc	w, 5			; if one of the two is 0, no need to play alarm	
 	rcall	play			; otherwise, play
 
-	sbic	PINIR,IR
-	rjmp	main
+	sbic	PINIR,IR		; if the remote is sending a code, it needs to be read
+	rjmp	main			; otherwise, wait in main
 
 	cli						; The NEC signals have to be read without interrupt
 	rcall	read_remote		; wait for the user to press a button
 	sei						; the interrupt is disabled in read_remote we reactivate it here
 
-	cpi		b0,0			
+	cpi		b0,0			; if its 0, then it's a repeat or an error
 	breq	main
 
 	rjmp	menu_bouton

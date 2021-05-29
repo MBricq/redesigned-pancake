@@ -22,7 +22,7 @@ affichage:
 	_CPI	_w, 2
 	breq	menu_music		; if their are 10 ->	menu music
 	_CPI	_w, 3
-	breq	menu_jeu		; if their are 11 -> menu jeu
+	breq	menu_error		; if their are 11 -> menu jeu
 
 	rjmp	main
 
@@ -32,17 +32,17 @@ menu_music:
 	rjmp	music_choice
 
 	PRINTF	LCD
-	.db		"Music",0
+	.db		"Alarme",0
 	rjmp	music_on_off
 	
 
-menu_jeu:			
-	; print jeu
+menu_error:			
+	; print error
 	sbrc	m,3
-	rjmp	jeu
+	rjmp	error_sub
 	
 	PRINTF	LCD
-	.db		"Jeu",0
+	.db		"ERROR",0
 	jmp		main
 
 menu_set_temp:		
@@ -96,7 +96,7 @@ print_limit:
 	jmp		display_cursor
 
 display_cursor:		
-	; show in which sub menu we are: <
+	; show in which sub menu we are: <-
 	ldi		w, 0x40
 	ldi		a0, 0x0f
 	sbrc	m, 4
@@ -106,10 +106,10 @@ display_cursor:
 	rcall	LCD_putc
 	jmp		main
 
-; ==== Menu Jeu ====
-jeu:
+; ==== Menu Error ====
+error_sub:
 	PRINTF	LCD
-	.db		"Ici y a un jeu",0
+	.db		"ERROR : Press EQ", LF, "Then change menu",0
 	jmp		main
 
 ; ==== Menu Musique ====
@@ -133,7 +133,7 @@ print_off:
 music_choice:
 	;print the music choice
 	PRINTF	LCD
-	.db		"Quelle musique ?",LF,0
+	.db		"Quelle alarme ?",LF,0
 
 	mov		w, m				;load the menu register in w
 	andi	w, 0b11000000		;select the two highest bits of w with a mask
