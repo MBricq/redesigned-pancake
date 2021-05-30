@@ -194,36 +194,36 @@
   <store_music_off_char><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm</FILE><LINE>192</LINE></store_music_off_char>
   <menu_bouton><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>4</LINE></menu_bouton>
   <turn_on_off><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>29</LINE></turn_on_off>
-  <enter_sub_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>39</LINE></enter_sub_button>
-  <next_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>44</LINE></next_menu>
-  <previous_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>58</LINE></previous_menu>
-  <button_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>72</LINE></button_music>
-  <test_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>77</LINE></test_music>
-  <change_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>89</LINE></change_music>
-  <temp_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>99</LINE></temp_buttons>
-  <save_m_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>288</LINE></save_m_eeprom>
-  <change_sub><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>84</LINE></change_sub>
-  <switch_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>109</LINE></switch_button>
-  <plus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>145</LINE></plus_button>
-  <minus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>150</LINE></minus_button>
-  <num_pad_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>219</LINE></num_pad_buttons>
-  <change_to_fahr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>132</LINE></change_to_fahr>
-  <change_to_cels><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>123</LINE></change_to_cels>
-  <end_of_switch><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>140</LINE></end_of_switch>
-  <change_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>157</LINE></change_temp>
-  <change_tl><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>188</LINE></change_tl>
-  <change_th><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>164</LINE></change_th>
-  <save_t><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>211</LINE></save_t>
-  <button_one><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>244</LINE></button_one>
-  <button_two><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>248</LINE></button_two>
-  <button_three><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>252</LINE></button_three>
-  <button_four><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>256</LINE></button_four>
-  <button_five><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>260</LINE></button_five>
-  <button_six><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>264</LINE></button_six>
-  <button_seven><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>268</LINE></button_seven>
-  <button_eight><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>272</LINE></button_eight>
-  <button_nine><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>276</LINE></button_nine>
-  <button_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>280</LINE></button_zero>
-  <change_unit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>284</LINE></change_unit>
+  <enter_sub_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>36</LINE></enter_sub_button>
+  <next_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>41</LINE></next_menu>
+  <previous_menu><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>55</LINE></previous_menu>
+  <button_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>69</LINE></button_music>
+  <test_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>74</LINE></test_music>
+  <change_music><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>86</LINE></change_music>
+  <temp_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>96</LINE></temp_buttons>
+  <save_m_eeprom><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>285</LINE></save_m_eeprom>
+  <change_sub><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>81</LINE></change_sub>
+  <switch_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>106</LINE></switch_button>
+  <plus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>142</LINE></plus_button>
+  <minus_button><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>147</LINE></minus_button>
+  <num_pad_buttons><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>216</LINE></num_pad_buttons>
+  <change_to_fahr><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>129</LINE></change_to_fahr>
+  <change_to_cels><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>120</LINE></change_to_cels>
+  <end_of_switch><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>137</LINE></end_of_switch>
+  <change_temp><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>154</LINE></change_temp>
+  <change_tl><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>185</LINE></change_tl>
+  <change_th><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>161</LINE></change_th>
+  <save_t><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>208</LINE></save_t>
+  <button_one><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>241</LINE></button_one>
+  <button_two><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>245</LINE></button_two>
+  <button_three><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>249</LINE></button_three>
+  <button_four><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>253</LINE></button_four>
+  <button_five><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>257</LINE></button_five>
+  <button_six><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>261</LINE></button_six>
+  <button_seven><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>265</LINE></button_seven>
+  <button_eight><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>269</LINE></button_eight>
+  <button_nine><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>273</LINE></button_nine>
+  <button_zero><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>277</LINE></button_zero>
+  <change_unit><FILE>C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\ir_button.asm</FILE><LINE>281</LINE></change_unit>
  </LABELS>
 </ASSEMBLER_INFO>

@@ -31,9 +31,6 @@ turn_on_off:					; turn On/OFF the screen
 	com		w					; bitwise complement
 	sts		on_off_addr,w		; store direct to SRAM
 
-	cpi		w, 0				; compare imm w and 0
-	breq	PC+2				; jump next line if W = 0
-
 	jmp		affichage
 
 enter_sub_button:				; enter or exit the sub menu (3rd bit of m)

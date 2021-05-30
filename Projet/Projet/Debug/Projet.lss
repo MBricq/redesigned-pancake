@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Sat May 29 18:07:15 2021
+AVRASM ver. 2.2.8  C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm Sun May 30 18:14:23 2021
 
 [builtin](2): Including file 'C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.1.130\avrasm\inc\m128def.inc'
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(6): Including file 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\Libraries\macros.asm'
@@ -3120,11 +3120,11 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(40): I
                                  ;==== Interrupt Vectors ====
                                  
                                  .org	0
-000000 940c 0ae6                 	jmp		reset
+000000 940c 0ae5                 	jmp		reset
                                  .org	0x10
-000010 940c 0ab4                 	jmp ext_int7
+000010 940c 0ab3                 	jmp ext_int7
                                  .org	OVF0addr				;overflow timer 0
-000020 940c 0abc                 	jmp		ovf0
+000020 940c 0abb                 	jmp		ovf0
                                  
                                  
                                  
@@ -5890,8 +5890,8 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
                                  									;>with Terr2 = 3.4% observed with the oscilloscope
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm(8): warning: float->int cast, truncated
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\remote.asm' included form here
-                                 .equ	T1 = 1125*(1+0.044)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
-                                 									;>Terr1 = 4.4% observed with the oscilloscope
+                                 .equ	T1 = 1125*(1+0.040)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
+                                 									;>Terr1 = 4% observed with the oscilloscope
                                  .equ	PINIR = PINE							
                                  
                                  ; Init the remote 
@@ -5931,7 +5931,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 000816 1f77                      	ROL2	b1,b0			; roll carry into 2-byte reg (ROL2, 2 cycles)
 000817 fd60                      	sbrc	b0,0			; (branch not taken, 1 cycle; taken 2 cycles)
 000818 c00c                      	rjmp	rdz_a			; (rjmp, 2 cycles)
-000819 e109
+000819 e104
 00081a 2e30
 00081b e007
 00081c 943a
@@ -5943,7 +5943,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 000822 f771                      	DJNZ	b2,addr			; Decrement and Jump if Not Zero (true, 2 cycles; false, 1 cycle)
 000823 940c 082f                 	jmp		next_a			; (jmp, 3 cycles)
                                  rdz_a:						; read a zero
-000825 e305
+000825 e20b
 000826 2e30
 000827 e00d
 000828 943a
@@ -5973,7 +5973,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 00083c 1f77                      	ROL2	b1,b0			; rotate left through carry
 00083d fd60                      	sbrc	b0,0			; skip bit in reg clear
 00083e c00c                      	rjmp	rdz_d			; if LSB from b0 = 0 go to rdz_d
-00083f e109
+00083f e104
 000840 2e30
 000841 e007
 000842 943a
@@ -5986,7 +5986,7 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 000849 940c 0855                 	jmp		next_b			; go to next_b
                                  		
                                  rdz_d:							
-00084b e305
+00084b e20b
 00084c 2e30
 00084d e00d
 00084e 943a
@@ -6081,16 +6081,16 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 000886 9100 0205                 	lds		w, on_off_addr	;load the address ON/OFF in w
 000888 3000                      	cpi		w, 0			;compare with 0, if w = 0 go to main 
 000889 f009                      	breq	PC+2
-00088a c280                      	rjmp	main
+00088a c27f                      	rjmp	main
                                  
 00088b 2d16                      	mov		_w, m			; load m in _w
 00088c 7013                      	andi	_w, 0b11		; select the two last bits of m 
 00088d e000
 00088e 1710                      	_CPI	_w, 0		
-00088f f111                      	breq	menu_set_temp	; if their are 00 -> menu set temp
+00088f f159                      	breq	menu_set_temp	; if their are 00 -> menu set temp
 000890 e001
 000891 1710                      	_CPI	_w, 1		
-000892 f199                      	breq	menu_temp		; if their are 01 ->	menu temp
+000892 f1e1                      	breq	menu_temp		; if their are 01 ->	menu temp
 000893 e002
 000894 1710                      	_CPI	_w, 2
 000895 f021                      	breq	menu_music		; if their are 10 ->	menu music
@@ -6098,12 +6098,12 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 000897 1710                      	_CPI	_w, 3
 000898 f069                      	breq	menu_error		; if their are 11 -> menu jeu
                                  
-000899 c271                      	rjmp	main
+000899 c270                      	rjmp	main
                                  
                                  menu_music:			
                                  	; print music
 00089a fc63                      	sbrc	m,3
-00089b c0a5                      	rjmp	music_choice
+00089b c0a6                      	rjmp	music_choice
                                  
 00089c ec00
 00089d 2e40
@@ -6116,13 +6116,13 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(37): '
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(35): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
 0008a4 0000                      	.db		"Alarme",0
-0008a5 c08f                      	rjmp	music_on_off
+0008a5 c090                      	rjmp	music_on_off
                                  	
                                  
                                  menu_error:			
                                  	; print error
 0008a6 fc63                      	sbrc	m,3
-0008a7 c075                      	rjmp	error_sub
+0008a7 c07e                      	rjmp	error_sub
                                  	
 0008a8 ec00
 0008a9 2e40
@@ -6131,767 +6131,769 @@ C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): '
 0008ac dca7                      	PRINTF	LCD
 0008ad 5245
 0008ae 4f52
-0008af 0052                      	.db		"ERROR",0
-0008b0 940c 0b0b                 	jmp		main
+0008af 2052
+0008b0 0a3a
+0008b1 7250
+0008b2 7365
+0008b3 2073
+0008b4 7250
+0008b5 7665
+0008b6 6f69
+0008b7 7375
+C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(45): warning: .cseg .db misalignment - padding zero byte
+C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
+0008b8 0000                      	.db		"ERROR :",LF,"Press Previous",0
+0008b9 940c 0b0a                 	jmp		main
                                  
                                  menu_set_temp:		
                                  	; print temp lim
-0008b2 fc63                      	sbrc	m,3
-0008b3 c049                      	rjmp	print_limit
+0008bb fc63                      	sbrc	m,3
+0008bc c049                      	rjmp	print_limit
                                  
-0008b4 ec00
-0008b5 2e40
-0008b6 e004
-0008b7 2e50
-0008b8 dc9b                      	PRINTF	LCD
-0008b9 6554
-0008ba 706d
-0008bb 7265
-0008bc 7461
-0008bd 7275
-0008be 7365
-0008bf 6c0a
-0008c0 6d69
-0008c1 7469
-0008c2 7365
+0008bd ec00
+0008be 2e40
+0008bf e004
+0008c0 2e50
+0008c1 dc92                      	PRINTF	LCD
+0008c2 6554
+0008c3 706d
+0008c4 7265
+0008c5 7461
+0008c6 7275
+0008c7 7365
+0008c8 6c0a
+0008c9 6d69
+0008ca 7469
+0008cb 7365
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(54): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-0008c3 0000                      	.db		"Temperatures",LF,"limites",0
-0008c4 940c 0b0b                 	jmp		main
+0008cc 0000                      	.db		"Temperatures",LF,"limites",0
+0008cd 940c 0b0a                 	jmp		main
                                  
                                  menu_temp:			
                                  	; print temp	
-0008c6 fc63                      	sbrc	m,3
-0008c7 c013                      	rjmp	degre
+0008cf fc63                      	sbrc	m,3
+0008d0 c013                      	rjmp	degre
                                  
-0008c8 ec00
-0008c9 2e40
-0008ca e004
-0008cb 2e50
-0008cc dc87                      	PRINTF LCD
-0008cd 6345
-0008ce 6568
-0008cf 6c6c
-0008d0 2065
-0008d1 6564
-0008d2 740a
-0008d3 6d65
-0008d4 6570
-0008d5 6172
-0008d6 7574
-0008d7 6572
+0008d1 ec00
+0008d2 2e40
+0008d3 e004
+0008d4 2e50
+0008d5 dc7e                      	PRINTF LCD
+0008d6 6345
+0008d7 6568
+0008d8 6c6c
+0008d9 2065
+0008da 6564
+0008db 740a
+0008dc 6d65
+0008dd 6570
+0008de 6172
+0008df 7574
+0008e0 6572
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(63): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-0008d8 0000                      	.db		"Echelle de",LF,"temperature",0
-0008d9 940c 0b0b                 	jmp		main
+0008e1 0000                      	.db		"Echelle de",LF,"temperature",0
+0008e2 940c 0b0a                 	jmp		main
                                  
                                  ; ==== Menu Choix Unite Temperature ====
                                  degre:
-0008db ec00
-0008dc 2e40
-0008dd e004
-0008de 2e50
-0008df dc74                      	PRINTF	LCD
-0008e0 6544
-0008e1 7267
-0008e2 2065
-0008e3 0a3a
+0008e4 ec00
+0008e5 2e40
+0008e6 e004
+0008e7 2e50
+0008e8 dc6b                      	PRINTF	LCD
+0008e9 6544
+0008ea 7267
+0008eb 2065
+0008ec 0a3a
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(69): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-0008e4 0000                      	.db		"Degre :",LF,0
+0008ed 0000                      	.db		"Degre :",LF,0
                                  
-0008e5 fc62                      	sbrc	m,2
-0008e6 c00a                      	rjmp	print_f
+0008ee fc62                      	sbrc	m,2
+0008ef c00a                      	rjmp	print_f
                                  
                                  print_c:			
                                  	; print Celsius
-0008e7 ec00
-0008e8 2e40
-0008e9 e004
-0008ea 2e50
-0008eb dc68                      	PRINTF	LCD
-0008ec 6543
-0008ed 736c
-0008ee 7569
-0008ef 0073                      	.db		"Celsius",0
-0008f0 c21a                      	rjmp	main
+0008f0 ec00
+0008f1 2e40
+0008f2 e004
+0008f3 2e50
+0008f4 dc5f                      	PRINTF	LCD
+0008f5 6543
+0008f6 736c
+0008f7 7569
+0008f8 0073                      	.db		"Celsius",0
+0008f9 c210                      	rjmp	main
                                  
                                  print_f:			
                                  	; print Fahrenheit
-0008f1 ec00
-0008f2 2e40
-0008f3 e004
-0008f4 2e50
-0008f5 dc5e                      	PRINTF	LCD
-0008f6 6146
-0008f7 7268
-0008f8 6e65
-0008f9 6568
-0008fa 7469
+0008fa ec00
+0008fb 2e40
+0008fc e004
+0008fd 2e50
+0008fe dc55                      	PRINTF	LCD
+0008ff 6146
+000900 7268
+000901 6e65
+000902 6568
+000903 7469
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(83): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-0008fb 0000                      	.db		"Fahrenheit",0
-0008fc c20e                      	rjmp	main
+000904 0000                      	.db		"Fahrenheit",0
+000905 c204                      	rjmp	main
                                  
                                  
                                  ; ==== Menu Limite Temperature ====
                                  print_limit:		
                                  	; print Limite
-0008fd 9130 0202                 	lds		r19, unit_addr				;load the unit in r19 
-0008ff 9110 0200                 	lds		r17, th_addr				;load the high temp in r17 
-000901 9120 0201                 	lds		r18, tl_addr				;load the low temp in r18
-000903 ec00
-000904 2e40
-000905 e004
-000906 2e50
-000907 dc4c                      	PRINTF	LCD
-000908 6854
-000909 203a
-00090a 11c1
-00090b 2020
-00090c 3a75
-00090d 13c0
-00090e 540a
-00090f 3a6c
-000910 c120
-000911 0012                      	.db		"Th: ",FDEC|FSIGN,17,"  u:",FDEC,19,LF,"Tl: ",FDEC|FSIGN,18,0
+000906 9130 0202                 	lds		r19, unit_addr				;load the unit in r19 
+000908 9110 0200                 	lds		r17, th_addr				;load the high temp in r17 
+00090a 9120 0201                 	lds		r18, tl_addr				;load the low temp in r18
+00090c ec00
+00090d 2e40
+00090e e004
+00090f 2e50
+000910 dc43                      	PRINTF	LCD
+000911 6854
+000912 203a
+000913 11c1
+000914 2020
+000915 3a75
+000916 13c0
+000917 540a
+000918 3a6c
+000919 c120
+00091a 0012                      	.db		"Th: ",FDEC|FSIGN,17,"  u:",FDEC,19,LF,"Tl: ",FDEC|FSIGN,18,0
                                  
-000912 940c 0914                 	jmp		display_cursor
+00091b 940c 091d                 	jmp		display_cursor
                                  
                                  display_cursor:		
                                  	; show in which sub menu we are: <-
-000914 e400                      	ldi		w, 0x40
-000915 e02f                      	ldi		a0, 0x0f
-000916 fc64                      	sbrc	m, 4
-000917 0f20                      	add		a0, w
-000918 dbd3                      	rcall	LCD_pos
-000919 e72f                      	ldi		a0, 127
-00091a dba5                      	rcall	LCD_putc
-00091b 940c 0b0b                 	jmp		main
+00091d e400                      	ldi		w, 0x40
+00091e e02f                      	ldi		a0, 0x0f
+00091f fc64                      	sbrc	m, 4
+000920 0f20                      	add		a0, w
+000921 dbca                      	rcall	LCD_pos
+000922 e72f                      	ldi		a0, 127
+000923 db9c                      	rcall	LCD_putc
+000924 940c 0b0a                 	jmp		main
                                  
                                  ; ==== Menu Error ====
                                  error_sub:
-00091d ec00
-00091e 2e40
-00091f e004
-000920 2e50
-000921 dc32                      	PRINTF	LCD
-000922 5245
-000923 4f52
-000924 2052
-000925 203a
-000926 7250
-000927 7365
-000928 2073
-000929 5145
-00092a 540a
-00092b 6568
-00092c 206e
-00092d 6863
-00092e 6e61
-00092f 6567
-000930 6d20
-000931 6e65
-000932 0075                      	.db		"ERROR : Press EQ", LF, "Then change menu",0
-000933 940c 0b0b                 	jmp		main
+000926 ec00
+000927 2e40
+000928 e004
+000929 2e50
+00092a dc29                      	PRINTF	LCD
+00092b 5245
+00092c 4f52
+00092d 2052
+00092e 0a3a
+00092f 7250
+000930 7365
+000931 2073
+000932 5145
+C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(112): warning: .cseg .db misalignment - padding zero byte
+C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
+000933 0000                      	.db		"ERROR :",LF,"Press EQ",0
+000934 940c 0b0a                 	jmp		main
                                  
                                  ; ==== Menu Musique ====
                                  music_on_off:
                                  	; print	a music note
-000935 e02f                      	ldi		a0, 0x0f	;set the cursor position 
-000936 dbb5                      	rcall	LCD_pos		
-000937 fe65                      	sbrs	m, 5		
-000938 c004                      	rjmp	print_off	
+000936 e02f                      	ldi		a0, 0x0f	;set the cursor position 
+000937 dbb4                      	rcall	LCD_pos		
+000938 fe65                      	sbrs	m, 5		
+000939 c004                      	rjmp	print_off	
                                  
-000939 e021                      	ldi		a0,1		
-00093a db85                      	rcall	LCD_putc	
-00093b 940c 0b0b                 	jmp		main		
+00093a e021                      	ldi		a0,1		
+00093b db84                      	rcall	LCD_putc	
+00093c 940c 0b0a                 	jmp		main		
                                  
                                  print_off:
                                  	; print a reversed music note
-00093d e022                      	ldi		a0,2		
-00093e db81                      	rcall	LCD_putc
-00093f 940c 0b0b                 	jmp		main
+00093e e022                      	ldi		a0,2		
+00093f db80                      	rcall	LCD_putc
+000940 940c 0b0a                 	jmp		main
                                  
                                  music_choice:
                                  	;print the music choice
-000941 ec00
-000942 2e40
-000943 e004
-000944 2e50
-000945 dc0e                      	PRINTF	LCD
-000946 7551
-000947 6c65
-000948 656c
-000949 6120
-00094a 616c
-00094b 6d72
-00094c 2065
-00094d 0a3f
+000942 ec00
+000943 2e40
+000944 e004
+000945 2e50
+000946 dc0d                      	PRINTF	LCD
+000947 7551
+000948 6c65
+000949 656c
+00094a 6120
+00094b 616c
+00094c 6d72
+00094d 2065
+00094e 0a3f
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(136): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-00094e 0000                      	.db		"Quelle alarme ?",LF,0
+00094f 0000                      	.db		"Quelle alarme ?",LF,0
                                  
-00094f 2d06                      	mov		w, m				;load the menu register in w
-000950 7c00                      	andi	w, 0b11000000		;select the two highest bits of w with a mask
+000950 2d06                      	mov		w, m				;load the menu register in w
+000951 7c00                      	andi	w, 0b11000000		;select the two highest bits of w with a mask
                                  
-000951 3000                      	cpi		w, 0b00000000		;music 1 correspond to 00
-000952 f031                      	breq	music1
-000953 3400                      	cpi		w, 0b01000000		;music 2 correspond to 01
-000954 f081                      	breq	music2
-000955 3800                      	cpi		w, 0b10000000		;music 3 correspond to 10
-000956 f0e1                      	breq	music3
-000957 3c00                      	cpi		w, 0b11000000		;music 4 correspond to 11
-000958 f141                      	breq	music4
+000952 3000                      	cpi		w, 0b00000000		;music 1 correspond to 00
+000953 f031                      	breq	music1
+000954 3400                      	cpi		w, 0b01000000		;music 2 correspond to 01
+000955 f081                      	breq	music2
+000956 3800                      	cpi		w, 0b10000000		;music 3 correspond to 10
+000957 f0e1                      	breq	music3
+000958 3c00                      	cpi		w, 0b11000000		;music 4 correspond to 11
+000959 f141                      	breq	music4
                                  
                                  music1:	
                                  	; print Für Elise
-000959 ec00
-00095a 2e40
-00095b e004
-00095c 2e50
-00095d dbf6                      	PRINTF	LCD
-00095e 7546
-00095f 2072
-000960 6c45
-000961 7369
-000962 0065                      	.db		"Fur Elise",0
-000963 940c 0b0b                 	jmp		main
+00095a ec00
+00095b 2e40
+00095c e004
+00095d 2e50
+00095e dbf5                      	PRINTF	LCD
+00095f 7546
+000960 2072
+000961 6c45
+000962 7369
+000963 0065                      	.db		"Fur Elise",0
+000964 940c 0b0a                 	jmp		main
                                  
                                  music2:
                                  	; print Frêre Jacques
-000965 ec00
-000966 2e40
-000967 e004
-000968 2e50
-000969 dbea                      	PRINTF	LCD
-00096a 7246
-00096b 7265
-00096c 2065
-00096d 614a
-00096e 7163
-00096f 6575
-000970 0073                      	.db		"Frere Jacques",0
-000971 940c 0b0b                 	jmp		main
+000966 ec00
+000967 2e40
+000968 e004
+000969 2e50
+00096a dbe9                      	PRINTF	LCD
+00096b 7246
+00096c 7265
+00096d 2065
+00096e 614a
+00096f 7163
+000970 6575
+000971 0073                      	.db		"Frere Jacques",0
+000972 940c 0b0a                 	jmp		main
                                  
                                  music3:
                                  	; print Clair de lune
-000973 ec00
-000974 2e40
-000975 e004
-000976 2e50
-000977 dbdc                      	PRINTF	LCD
-000978 6c43
-000979 6961
-00097a 2072
-00097b 6564
-00097c 6c20
-00097d 6e75
-00097e 0065                      	.db		"Clair de lune",0
-00097f 940c 0b0b                 	jmp		main
+000974 ec00
+000975 2e40
+000976 e004
+000977 2e50
+000978 dbdb                      	PRINTF	LCD
+000979 6c43
+00097a 6961
+00097b 2072
+00097c 6564
+00097d 6c20
+00097e 6e75
+00097f 0065                      	.db		"Clair de lune",0
+000980 940c 0b0a                 	jmp		main
                                  
                                  music4:
                                  	; print Alarme
-000981 ec00
-000982 2e40
-000983 e004
-000984 2e50
-000985 dbce                      	PRINTF	LCD
-000986 6c41
-000987 7261
-000988 656d
+000982 ec00
+000983 2e40
+000984 e004
+000985 2e50
+000986 dbcd                      	PRINTF	LCD
+000987 6c41
+000988 7261
+000989 656d
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm(171): warning: .cseg .db misalignment - padding zero byte
 C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\main.asm(39): 'C:\Users\Administrateur\Desktop\redesigned-pancake\Projet\Projet\affichage.asm' included form here
-000989 0000                      	.db		"Alarme",0
-00098a 940c 0b0b                 	jmp		main
+00098a 0000                      	.db		"Alarme",0
+00098b 940c 0b0a                 	jmp		main
                                  
                                  
                                  note_music:
-00098c 0604
-00098d 0505
-00098e 1c04
-00098f 001c                      .db	0b00000100, 0b00000110, 0b00000101, 0b00000101, 0b00000100, 0b00011100, 0b00011100, 0b00000000
+00098d 0604
+00098e 0505
+00098f 1c04
+000990 001c                      .db	0b00000100, 0b00000110, 0b00000101, 0b00000101, 0b00000100, 0b00011100, 0b00011100, 0b00000000
                                  
                                  note_music_off:
-000990 f9fb
-000991 fafa
-000992 e3fb
-000993 ffe3                      .db 0b11111011, 0b11111001, 0b11111010, 0b11111010, 0b11111011, 0b11100011, 0b11100011, 0b11111111
+000991 f9fb
+000992 fafa
+000993 e3fb
+000994 ffe3                      .db 0b11111011, 0b11111001, 0b11111010, 0b11111010, 0b11111011, 0b11100011, 0b11100011, 0b11111111
                                  
                                  store_custom_char: 
-000994 9030 8000                 	lds		u, LCD_IR					; load the address LCD instruction reg in u
-000996 fc37
-000997 cffc                      	JB1		u,7,store_custom_char		; print a music note if the 7th bit of u is 1
+000995 9030 8000                 	lds		u, LCD_IR					; load the address LCD instruction reg in u
+000997 fc37
+000998 cffc                      	JB1		u,7,store_custom_char		; print a music note if the 7th bit of u is 1
                                  	
-000998 e408                      	ldi		r16, 0b01001000				
-000999 9300 8000                 	sts		LCD_IR,r16					; store direct to SRAM at the address LCD instruction
-00099b e1e8                      	ldi		zl,low(2*note_music)
-00099c e1f3                      	ldi		zh,high(2*note_music)
-00099d e028                      	ldi		r18,8						; load 8 in r18
-00099e d00c                      	rcall	store_lcd_loop
+000999 e408                      	ldi		r16, 0b01001000				
+00099a 9300 8000                 	sts		LCD_IR,r16					; store direct to SRAM at the address LCD instruction
+00099c e1ea                      	ldi		zl,low(2*note_music)
+00099d e1f3                      	ldi		zh,high(2*note_music)
+00099e e028                      	ldi		r18,8						; load 8 in r18
+00099f d00c                      	rcall	store_lcd_loop
                                  
                                  store_music_off_char:
-00099f 9030 8000                 	lds		u, LCD_IR					; load the address LCD instruction reg in u
-0009a1 fc37
-0009a2 cffc                      	JB1		u,7,store_music_off_char	; print a reversed music note if the 7th bit of u is 1
+0009a0 9030 8000                 	lds		u, LCD_IR					; load the address LCD instruction reg in u
+0009a2 fc37
+0009a3 cffc                      	JB1		u,7,store_music_off_char	; print a reversed music note if the 7th bit of u is 1
                                  
-0009a3 e500                      	ldi		r16, 0b01010000
-0009a4 9300 8000                 	sts		LCD_IR,r16					; store r16 direct to SRAM at the address LCD instruction
-0009a6 e2e0                      	ldi		zl,low(2*note_music_off)
-0009a7 e1f3                      	ldi		zh,high(2*note_music_off)
-0009a8 e028                      	ldi		r18,8						; load 8 in r18
-0009a9 d001                      	rcall	store_lcd_loop
+0009a4 e500                      	ldi		r16, 0b01010000
+0009a5 9300 8000                 	sts		LCD_IR,r16					; store r16 direct to SRAM at the address LCD instruction
+0009a7 e2e2                      	ldi		zl,low(2*note_music_off)
+0009a8 e1f3                      	ldi		zh,high(2*note_music_off)
+0009a9 e028                      	ldi		r18,8						; load 8 in r18
+0009aa d001                      	rcall	store_lcd_loop
                                  
-0009aa 9508                      	ret
+0009ab 9508                      	ret
                                  
                                  store_lcd_loop: 
-0009ab 9030 8000                   	lds		u, LCD_IR					; load the value from LCD_IR in u 
-0009ad fc37
-0009ae cffc                      	JB1		u,7,store_lcd_loop			; loop if the 7th bit of u is 1
-0009af 95c8                      	lpm									; load program memory
-0009b0 2d00                      	mov		r16,r0
-0009b1 9631                      	adiw	zl,1						; add immediate to word
-0009b2 9300 c000                 	sts		LCD_DR, r16					; store r16 direct to SRAM at the address LCD data register
-0009b4 952a                      	dec		r18							; decrement r18
-0009b5 f7a9                      	brne	store_lcd_loop				; loop if r18 not equal to 0 
-0009b6 db17                      	rcall	LCD_home	
+0009ac 9030 8000                   	lds		u, LCD_IR					; load the value from LCD_IR in u 
+0009ae fc37
+0009af cffc                      	JB1		u,7,store_lcd_loop			; loop if the 7th bit of u is 1
+0009b0 95c8                      	lpm									; load program memory
+0009b1 2d00                      	mov		r16,r0
+0009b2 9631                      	adiw	zl,1						; add immediate to word
+0009b3 9300 c000                 	sts		LCD_DR, r16					; store r16 direct to SRAM at the address LCD data register
+0009b5 952a                      	dec		r18							; decrement r18
+0009b6 f7a9                      	brne	store_lcd_loop				; loop if r18 not equal to 0 
+0009b7 db16                      	rcall	LCD_home	
                                  .include	"ir_button.asm"
-0009b7 9508                      
+0009b8 9508                      
                                  ; purpose link each button from the remote to its function
                                  
                                   menu_bouton:					; button code to their function
-0009b8 3a62                      	cpi		b0, 0xa2
-0009b9 f099                      	breq	turn_on_off			; power button
+0009b9 3a62                      	cpi		b0, 0xa2
+0009ba f099                      	breq	turn_on_off			; power button
                                  
-0009ba 9100 0205                 	lds		w, on_off_addr		; load direct from SRAM to w the address to store if screen is on/off
-0009bc 3000                      	cpi		w, 0				; compare imm w with 0
-0009bd f009                      	breq	PC+2				; jump the next line if w = 0
-0009be c14c                      	rjmp	main
+0009bb 9100 0205                 	lds		w, on_off_addr		; load direct from SRAM to w the address to store if screen is on/off
+0009bd 3000                      	cpi		w, 0				; compare imm w with 0
+0009be f009                      	breq	PC+2				; jump the next line if w = 0
+0009bf c14a                      	rjmp	main
                                  
                                  	; compare imm b0 with the value of the button and go to their function 
-0009bf 3e60                      	cpi		b0, 0xe0		
-0009c0 f0a9                      	breq	enter_sub_button	; EQ
-0009c1 3c62                      	cpi		b0, 0xC2		
-0009c2 f0b9                      	breq	next_menu			; >>|
-0009c3 3062                      	cpi		b0, 0x02
-0009c4 f111                      	breq	previous_menu		; |<<
-0009c5 3e62                      	cpi		b0, 0xe2
-0009c6 f169                      	breq	button_music		; Sound ON/OFF
-0009c7 3262                      	cpi		b0, 0x22
-0009c8 f179                      	breq	test_music			; >||
-0009c9 3b60                      	cpi		b0, 0xb0
-0009ca f1e9                      	breq	change_music		; U/SD
+0009c0 3e60                      	cpi		b0, 0xe0		
+0009c1 f099                      	breq	enter_sub_button	; EQ
+0009c2 3c62                      	cpi		b0, 0xC2		
+0009c3 f0a9                      	breq	next_menu			; >>|
+0009c4 3062                      	cpi		b0, 0x02
+0009c5 f101                      	breq	previous_menu		; |<<
+0009c6 3e62                      	cpi		b0, 0xe2
+0009c7 f159                      	breq	button_music		; Sound ON/OFF
+0009c8 3262                      	cpi		b0, 0x22
+0009c9 f169                      	breq	test_music			; >||
+0009ca 3b60                      	cpi		b0, 0xb0
+0009cb f1d9                      	breq	change_music		; U/SD
                                  	
-0009cb 940c 0a16                 	jmp temp_buttons
+0009cc 940c 0a15                 	jmp temp_buttons
                                  
                                  turn_on_off:					; turn On/OFF the screen
-0009cd 9100 0205                 	lds		w, on_off_addr		; load direct from SRAM to w the address to store if screen is on/off
-0009cf 9500                      	com		w					; bitwise complement
-0009d0 9300 0205                 	sts		on_off_addr,w		; store direct to SRAM
+0009ce 9100 0205                 	lds		w, on_off_addr		; load direct from SRAM to w the address to store if screen is on/off
+0009d0 9500                      	com		w					; bitwise complement
+0009d1 9300 0205                 	sts		on_off_addr,w		; store direct to SRAM
                                  
-0009d2 3000                      	cpi		w, 0				; compare imm w and 0
-0009d3 f009                      	breq	PC+2				; jump next line if W = 0
-                                 
-0009d4 940c 0884                 	jmp		affichage
+0009d3 940c 0884                 	jmp		affichage
                                  
                                  enter_sub_button:				; enter or exit the sub menu (3rd bit of m)
-0009d6 e008                      	ldi		w, 0b00001000		; load the 3rd bit in w
-0009d7 2660                      	eor		m, w				; change the 3rd bit of m
-0009d8 940c 0aae                 	jmp		save_m_eeprom
+0009d5 e008                      	ldi		w, 0b00001000		; load the 3rd bit in w
+0009d6 2660                      	eor		m, w				; change the 3rd bit of m
+0009d7 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  next_menu:						; change menu (two last bits of m) to the right
-0009da fc63                      	sbrc	m,3					; enter in the sub menu 
-0009db c028                      	rjmp	change_sub
+0009d9 fc63                      	sbrc	m,3					; enter in the sub menu 
+0009da c028                      	rjmp	change_sub
                                  
-0009dc 2d16                      	mov		_w, m				; save the m register in _w
-0009dd 7013                      	andi	_w, 0b00000011		; save the two la bits of m and clear the other
-0009de 5f1f                      	subi	_w, -1				; change the two last bits of m by adding 1: 00-01-10-00-...
-0009df 3013                      	cpi		_w, 0x3				; only 3 menus
-0009e0 f409                      	brne	PC+2
-0009e1 e010                      	ldi		_w, 0
-0009e2 ef0c
-0009e3 2260                      	_ANDI	m, 0b11111100		; clear the two lastbits of m with a mask
-0009e4 0e61                      	add		m,_w				; assemble the unmodified part with the last two bits
-0009e5 940c 0aae                 	jmp		save_m_eeprom
+0009db 2d16                      	mov		_w, m				; save the m register in _w
+0009dc 7013                      	andi	_w, 0b00000011		; save the two la bits of m and clear the other
+0009dd 5f1f                      	subi	_w, -1				; change the two last bits of m by adding 1: 00-01-10-00-...
+0009de 3013                      	cpi		_w, 0x3				; only 3 menus
+0009df f409                      	brne	PC+2
+0009e0 e010                      	ldi		_w, 0
+0009e1 ef0c
+0009e2 2260                      	_ANDI	m, 0b11111100		; clear the two lastbits of m with a mask
+0009e3 0e61                      	add		m,_w				; assemble the unmodified part with the last two bits
+0009e4 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  previous_menu:					; change menu (two last bits of m) to the left
-0009e7 fc63                      	sbrc	m,3					; enter in the sub menu 
-0009e8 c01b                      	rjmp	change_sub
+0009e6 fc63                      	sbrc	m,3					; enter in the sub menu 
+0009e7 c01b                      	rjmp	change_sub
                                  
-0009e9 2d16                      	mov		_w, m				; save the m register in _w 
-0009ea 7013                      	andi	_w, 0b00000011		; save the first two bits of m and clear the other
-0009eb 5011                      	subi	_w, 1				; change the first two  bits of register m by substracting 1: 00-11-10-01-00-...
-0009ec 3f1f                      	cpi		_w, 0xff			; only 3 menus
-0009ed f409                      	brne	PC+2
-0009ee e012                      	ldi		_w, 2
-0009ef ef0c
-0009f0 2260                      	_ANDI	m, 0b11111100		; clear the first two bits of m with a mask
-0009f1 0e61                      	add		m,_w				; assemble the unmodified part with the last two bits
-0009f2 940c 0aae                 	jmp		save_m_eeprom
+0009e8 2d16                      	mov		_w, m				; save the m register in _w 
+0009e9 7013                      	andi	_w, 0b00000011		; save the first two bits of m and clear the other
+0009ea 5011                      	subi	_w, 1				; change the first two  bits of register m by substracting 1: 00-11-10-01-00-...
+0009eb 3f1f                      	cpi		_w, 0xff			; only 3 menus
+0009ec f409                      	brne	PC+2
+0009ed e012                      	ldi		_w, 2
+0009ee ef0c
+0009ef 2260                      	_ANDI	m, 0b11111100		; clear the first two bits of m with a mask
+0009f0 0e61                      	add		m,_w				; assemble the unmodified part with the last two bits
+0009f1 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  button_music:					; sound ON/OFF 
-0009f4 e200                      	ldi		w, 0b00100000		; load the 5th bit in w
-0009f5 2660                      	eor		m, w				; invert the 5th bit in m
-0009f6 940c 0aae                 	jmp		save_m_eeprom
+0009f3 e200                      	ldi		w, 0b00100000		; load the 5th bit in w
+0009f4 2660                      	eor		m, w				; invert the 5th bit in m
+0009f5 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  test_music:						; play the alarm / music
-0009f8 2d06
-0009f9 700b
-0009fa 300a
-0009fb f009
-0009fc 940c 0884                 	CHECK_MENU_MUSIC			; check if we are in the correct submenu
-0009fe e200                      	ldi		w, 32				; load 32 in 32
-0009ff 9300 0204                 	sts		alarm_addr, w		; store direct the alarm address to SRAM
-000a01 ddd2                      	rcall	play				; play the music
-000a02 940c 0884                 	jmp		affichage
+0009f7 2d06
+0009f8 700b
+0009f9 300a
+0009fa f009
+0009fb 940c 0884                 	CHECK_MENU_MUSIC			; check if we are in the correct submenu
+0009fd e200                      	ldi		w, 32				; load 32 in 32
+0009fe 9300 0204                 	sts		alarm_addr, w		; store direct the alarm address to SRAM
+000a00 ddd3                      	rcall	play				; play the music
+000a01 940c 0884                 	jmp		affichage
                                  
                                  change_sub:						; change the sub menu (4th bit of m)
-000a04 e100                      	ldi		w, 0b00010000		; load the 4th bit in w
-000a05 2660                      	eor		m, w				; change the 4th bit of m
-000a06 940c 0aae                 	jmp		save_m_eeprom
+000a03 e100                      	ldi		w, 0b00010000		; load the 4th bit in w
+000a04 2660                      	eor		m, w				; change the 4th bit of m
+000a05 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  change_music:					; change the music: Alarm -> Elise -> Frere Jacques -> Clair De Lune -> Alarm ...
-000a08 2d06
-000a09 700b
-000a0a 300a
-000a0b f009
-000a0c 940c 0884                 	CHECK_MENU_MUSIC			; check if we are in the correct submenu
-000a0e 2d06                      	mov		w, m				; save the m register in w 
-000a0f 7c00                      	andi	w, 0b11000000		; save the two largest bits of m and clear the other
-000a10 5c00                      	subi	w, -(0b01000000)	; change the first two  bits of register m by adding 1: 00-01-10-11-00-...
-000a11 e31f                      	ldi		_w, 0b00111111		; load bits 0 to 5 in _w
-000a12 2261                      	and		m, _w				; save bits 0 to 5 from m and clear the other 
-000a13 0e60                      	add		m, w				; add m and w
-000a14 940c 0aae                 	jmp		save_m_eeprom
+000a07 2d06
+000a08 700b
+000a09 300a
+000a0a f009
+000a0b 940c 0884                 	CHECK_MENU_MUSIC			; check if we are in the correct submenu
+000a0d 2d06                      	mov		w, m				; save the m register in w 
+000a0e 7c00                      	andi	w, 0b11000000		; save the two largest bits of m and clear the other
+000a0f 5c00                      	subi	w, -(0b01000000)	; change the first two  bits of register m by adding 1: 00-01-10-11-00-...
+000a10 e31f                      	ldi		_w, 0b00111111		; load bits 0 to 5 in _w
+000a11 2261                      	and		m, _w				; save bits 0 to 5 from m and clear the other 
+000a12 0e60                      	add		m, w				; add m and w
+000a13 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  temp_buttons:
-000a16 3968                      	cpi		b0, 0x98
-000a17 f031                      	breq	switch_button		; double arrow
-000a18 3960                      	cpi		b0, 0x90
-000a19 f121                      	breq	plus_button			; +
-000a1a 3a68                      	cpi		b0, 0xa8
-000a1b f159                      	breq	minus_button		; -
+000a15 3968                      	cpi		b0, 0x98
+000a16 f031                      	breq	switch_button		; double arrow
+000a17 3960                      	cpi		b0, 0x90
+000a18 f121                      	breq	plus_button			; +
+000a19 3a68                      	cpi		b0, 0xa8
+000a1a f159                      	breq	minus_button		; -
                                  
-000a1c 940c 0a7a                 	jmp		num_pad_buttons
+000a1b 940c 0a79                 	jmp		num_pad_buttons
                                  
                                  switch_button:					; choose btw Celcius and Fahrenheit
-000a1e 2d06                      	mov		w, m				; load m in w
-000a1f 700b                      	andi	w, 0b00001011		; use a mask to keep only the bits 0,1,3
-000a20 3009                      	cpi		w, 0b00001001		; see if we are in the the correct sub menu
-000a21 f009                      	breq	PC+2			
-000a22 940c 0884                 	jmp		affichage			; we are in the wrong sub menu
-000a24 e004                      	ldi		w, 0b00000100		; correct sub menu, load the 2nd bit in w
-000a25 2660                      	eor		m, w				; modify the 2nd bit of m
+000a1d 2d06                      	mov		w, m				; load m in w
+000a1e 700b                      	andi	w, 0b00001011		; use a mask to keep only the bits 0,1,3
+000a1f 3009                      	cpi		w, 0b00001001		; see if we are in the the correct sub menu
+000a20 f009                      	breq	PC+2			
+000a21 940c 0884                 	jmp		affichage			; we are in the wrong sub menu
+000a23 e004                      	ldi		w, 0b00000100		; correct sub menu, load the 2nd bit in w
+000a24 2660                      	eor		m, w				; modify the 2nd bit of m
                                  
-000a26 9120 0200                 	lds		a0, th_addr			; load the temperature
+000a25 9120 0200                 	lds		a0, th_addr			; load the temperature
                                  
-000a28 fc62                      	sbrc	m, 2				; check if we are now in °F or °C
-000a29 c009                      	rjmp	change_to_fahr
+000a27 fc62                      	sbrc	m, 2				; check if we are now in °F or °C
+000a28 c009                      	rjmp	change_to_fahr
                                  
                                  change_to_cels:
                                  	; change the temp unit from Fahrenheit to Celsius
-000a2a dcf3                      	rcall	fahr_to_c
-000a2b 9320 0200                 	sts		th_addr, a0
-000a2d 9120 0201                 	lds		a0, tl_addr
-000a2f dcee                      	rcall	fahr_to_c
-000a30 9320 0201                 	sts		tl_addr, a0
-000a32 c008                      	rjmp	end_of_switch
+000a29 dcf4                      	rcall	fahr_to_c
+000a2a 9320 0200                 	sts		th_addr, a0
+000a2c 9120 0201                 	lds		a0, tl_addr
+000a2e dcef                      	rcall	fahr_to_c
+000a2f 9320 0201                 	sts		tl_addr, a0
+000a31 c008                      	rjmp	end_of_switch
                                  
                                  change_to_fahr:
                                  	; change the temp unit from Celsius to Fahrenheit
-000a33 dcd8                      	rcall	cel_to_f
-000a34 9320 0200                 	sts		th_addr, a0
-000a36 9120 0201                 	lds		a0, tl_addr
-000a38 dcd3                      	rcall	cel_to_f
-000a39 9320 0201                 	sts		tl_addr, a0
+000a32 dcd9                      	rcall	cel_to_f
+000a33 9320 0200                 	sts		th_addr, a0
+000a35 9120 0201                 	lds		a0, tl_addr
+000a37 dcd4                      	rcall	cel_to_f
+000a38 9320 0201                 	sts		tl_addr, a0
                                  
                                  end_of_switch:
                                  	; after the change is done, save the temperatures in the EEPROM
-000a3b dc98                      	rcall	save_t_eeprom
-000a3c 940c 0aae                 	jmp		save_m_eeprom
+000a3a dc99                      	rcall	save_t_eeprom
+000a3b 940c 0aad                 	jmp		save_m_eeprom
                                  
                                  plus_button:					; button used to increase the temp value
-000a3e 2d06
-000a3f 700b
-000a40 3008
-000a41 f009
-000a42 940c 0884                 	CHECK_MENU_LIMIT
-000a44 9100 0202                 	lds		w, unit_addr		; unit_addr contains a value between 1-10, changed using num pad
-000a46 c00b                      	rjmp	change_temp
+000a3d 2d06
+000a3e 700b
+000a3f 3008
+000a40 f009
+000a41 940c 0884                 	CHECK_MENU_LIMIT
+000a43 9100 0202                 	lds		w, unit_addr		; unit_addr contains a value between 1-10, changed using num pad
+000a45 c00b                      	rjmp	change_temp
                                  
                                  minus_button:					; button used to lower the temp value
-000a47 2d06
-000a48 700b
-000a49 3008
-000a4a f009
-000a4b 940c 0884                 	CHECK_MENU_LIMIT
-000a4d 9100 0202                 	lds		w, unit_addr
-000a4f 9500                      	com		w					; start reversing bits
-000a50 5f0f                      	subi	w, (-1)				; add 1 so that all bits are inverted
-000a51 c000                      	rjmp	change_temp
+000a46 2d06
+000a47 700b
+000a48 3008
+000a49 f009
+000a4a 940c 0884                 	CHECK_MENU_LIMIT
+000a4c 9100 0202                 	lds		w, unit_addr
+000a4e 9500                      	com		w					; start reversing bits
+000a4f 5f0f                      	subi	w, (-1)				; add 1 so that all bits are inverted
+000a50 c000                      	rjmp	change_temp
                                  
                                  change_temp:					; effectively add the value of the unit_addr to the chosen limit
-000a52 9120 0200                 	lds		a0, th_addr
-000a54 9130 0201                 	lds		a1, tl_addr
+000a51 9120 0200                 	lds		a0, th_addr
+000a53 9130 0201                 	lds		a1, tl_addr
                                  	
-000a56 fc64                      	sbrc	m, 4				; check if the user is pointing at th or tl
-000a57 c00e                      	rjmp	change_tl
+000a55 fc64                      	sbrc	m, 4				; check if the user is pointing at th or tl
+000a56 c00e                      	rjmp	change_tl
                                  
                                  change_th:						; TH was changed
-000a58 0f20                      	add		a0, w
+000a57 0f20                      	add		a0, w
                                  
                                  	; TH needs to be lower than 50°C or 125°F
-000a59 f40b                      	brvc	PC+2
-000a5a e72d                      	ldi		a0, 125
+000a58 f40b                      	brvc	PC+2
+000a59 e72d                      	ldi		a0, 125
                                  	
-000a5b e302                      	ldi		w, 50
-000a5c fc62                      	sbrc	m, 2
-000a5d e70d                      	ldi		w, 125
+000a5a e302                      	ldi		w, 50
+000a5b fc62                      	sbrc	m, 2
+000a5c e70d                      	ldi		w, 125
                                  
-000a5e 1720                      	cp		a0, w
+000a5d 1720                      	cp		a0, w
                                  	
-000a5f f00c                      	brlt	PC+2
-000a60 2f20                      	mov		a0, w
+000a5e f00c                      	brlt	PC+2
+000a5f 2f20                      	mov		a0, w
                                  
                                  	; check if TH gets smaller than TL
-000a61 1732                      	cp		a1, a0
-000a62 f084                      	brlt	save_t
+000a60 1732                      	cp		a1, a0
+000a61 f084                      	brlt	save_t
                                  
-000a63 2f23                      	mov		a0, a1
-000a64 5f2f                      	subi	a0, -1
-000a65 c00d                      	rjmp	save_t
+000a62 2f23                      	mov		a0, a1
+000a63 5f2f                      	subi	a0, -1
+000a64 c00d                      	rjmp	save_t
                                  
                                  change_tl:						; TL was changed
-000a66 0f30                      	add		a1, w
+000a65 0f30                      	add		a1, w
                                  
                                  	; check if TL gets smaller than -30°C or -20°F
-000a67 f40b                      	brvc	PC+2
-000a68 e73d                      	ldi		a1, 125
+000a66 f40b                      	brvc	PC+2
+000a67 e73d                      	ldi		a1, 125
                                  
-000a69 ee02                      	ldi		w, -30
-000a6a fc62                      	sbrc	m, 2
-000a6b ee07                      	ldi		w, -25
+000a68 ee02                      	ldi		w, -30
+000a69 fc62                      	sbrc	m, 2
+000a6a ee07                      	ldi		w, -25
                                  
-000a6c 1730                      	cp		a1, w
+000a6b 1730                      	cp		a1, w
                                  	
-000a6d f40c                      	brge	PC+2
-000a6e 2f30                      	mov		a1, w
+000a6c f40c                      	brge	PC+2
+000a6d 2f30                      	mov		a1, w
                                  
                                  	; check if TL gets bigger than TH
-000a6f 1732                      	cp		a1, a0
-000a70 f014                      	brlt	save_t
+000a6e 1732                      	cp		a1, a0
+000a6f f014                      	brlt	save_t
                                  
-000a71 2f32                      	mov		a1, a0
-000a72 5031                      	subi	a1, 1
+000a70 2f32                      	mov		a1, a0
+000a71 5031                      	subi	a1, 1
                                  
                                  save_t:							; The temperature is saved in the SRAM and the EEPROM
-000a73 9320 0200                 	sts		th_addr, a0
-000a75 9330 0201                 	sts		tl_addr, a1
+000a72 9320 0200                 	sts		th_addr, a0
+000a74 9330 0201                 	sts		tl_addr, a1
                                  
-000a77 dc5c                      	rcall	save_t_eeprom
-000a78 940c 0884                 	jmp		affichage
+000a76 dc5d                      	rcall	save_t_eeprom
+000a77 940c 0884                 	jmp		affichage
                                  
                                  
                                  num_pad_buttons:				; connection from button code to their function
-000a7a 2d06
-000a7b 700b
-000a7c 3008
-000a7d f009
-000a7e 940c 0884                 	CHECK_MENU_LIMIT
-000a80 3360                      	cpi		b0, 0x30
-000a81 f0a1                      	breq	button_one		;1
-000a82 3168                      	cpi		b0, 0x18
-000a83 f0a1                      	breq	button_two		;2
-000a84 376a                      	cpi		b0, 0x7a
-000a85 f0a1                      	breq	button_three	;3
-000a86 3160                      	cpi		b0, 0x10
-000a87 f0a1                      	breq	button_four		;4
-000a88 3368                      	cpi		b0, 0x38
-000a89 f0a1                      	breq	button_five		;5
-000a8a 356a                      	cpi		b0, 0x5a
-000a8b f0a1                      	breq	button_six		;6
-000a8c 3462                      	cpi		b0, 0x42
-000a8d f0a1                      	breq	button_seven	;7
-000a8e 346a                      	cpi		b0, 0x4a
-000a8f f0a1                      	breq	button_eight	;8
-000a90 3562                      	cpi		b0, 0x52
-000a91 f0a1                      	breq	button_nine		;9
-000a92 3668                      	cpi		b0, 0x68
-000a93 f0a1                      	breq	button_zero		;0
+000a79 2d06
+000a7a 700b
+000a7b 3008
+000a7c f009
+000a7d 940c 0884                 	CHECK_MENU_LIMIT
+000a7f 3360                      	cpi		b0, 0x30
+000a80 f0a1                      	breq	button_one		;1
+000a81 3168                      	cpi		b0, 0x18
+000a82 f0a1                      	breq	button_two		;2
+000a83 376a                      	cpi		b0, 0x7a
+000a84 f0a1                      	breq	button_three	;3
+000a85 3160                      	cpi		b0, 0x10
+000a86 f0a1                      	breq	button_four		;4
+000a87 3368                      	cpi		b0, 0x38
+000a88 f0a1                      	breq	button_five		;5
+000a89 356a                      	cpi		b0, 0x5a
+000a8a f0a1                      	breq	button_six		;6
+000a8b 3462                      	cpi		b0, 0x42
+000a8c f0a1                      	breq	button_seven	;7
+000a8d 346a                      	cpi		b0, 0x4a
+000a8e f0a1                      	breq	button_eight	;8
+000a8f 3562                      	cpi		b0, 0x52
+000a90 f0a1                      	breq	button_nine		;9
+000a91 3668                      	cpi		b0, 0x68
+000a92 f0a1                      	breq	button_zero		;0
                                  
-000a94 940c 0884                 	jmp		affichage
+000a93 940c 0884                 	jmp		affichage
                                  
                                  button_one:						; button used to change to 1 the unit to add/remove at the temp lim
-000a96 e001                      	ldi		w,1
-000a97 c012                      	rjmp	change_unit
+000a95 e001                      	ldi		w,1
+000a96 c012                      	rjmp	change_unit
                                  
                                  button_two:						; button used to change to 2 the unit to add/remove at the temp lim
-000a98 e002                      	ldi		w,2
-000a99 c010                      	rjmp	change_unit
+000a97 e002                      	ldi		w,2
+000a98 c010                      	rjmp	change_unit
                                  
                                  button_three:					; button used to change to 3 the unit to add/remove at the temp lim
-000a9a e003                      	ldi		w,3
-000a9b c00e                      	rjmp	change_unit
+000a99 e003                      	ldi		w,3
+000a9a c00e                      	rjmp	change_unit
                                  	
                                  button_four:					; button used to change to 4 the unit to add/remove at the temp lim
-000a9c e004                      	ldi		w,4
-000a9d c00c                      	rjmp	change_unit
+000a9b e004                      	ldi		w,4
+000a9c c00c                      	rjmp	change_unit
                                  
                                  button_five:					; button used to change to 5 the unit to add/remove at the temp lim
-000a9e e005                      	ldi		w,5
-000a9f c00a                      	rjmp	change_unit
+000a9d e005                      	ldi		w,5
+000a9e c00a                      	rjmp	change_unit
                                  
                                  button_six:						; button used to change to 6 the unit to add/remove at the temp lim
-000aa0 e006                      	ldi		w,6
-000aa1 c008                      	rjmp	change_unit
+000a9f e006                      	ldi		w,6
+000aa0 c008                      	rjmp	change_unit
                                  
                                  button_seven:					; button used to change to 7 the unit to add/remove at the temp lim
-000aa2 e007                      	ldi		w,7
-000aa3 c006                      	rjmp	change_unit
+000aa1 e007                      	ldi		w,7
+000aa2 c006                      	rjmp	change_unit
                                  
                                  button_eight:					; button used to change to 8 the unit to add/remove at the temp lim
-000aa4 e008                      	ldi		w,8
-000aa5 c004                      	rjmp	change_unit
+000aa3 e008                      	ldi		w,8
+000aa4 c004                      	rjmp	change_unit
                                  
                                  button_nine:					; button used to change to 9 the unit to add/remove at the temp lim
-000aa6 e009                      	ldi		w,9
-000aa7 c002                      	rjmp	change_unit
+000aa5 e009                      	ldi		w,9
+000aa6 c002                      	rjmp	change_unit
                                  
                                  button_zero:					; button used to change to 10 the unit to add/remove at the temp lim
-000aa8 e00a                      	ldi		w,10
-000aa9 c000                      	rjmp	change_unit
+000aa7 e00a                      	ldi		w,10
+000aa8 c000                      	rjmp	change_unit
                                  
                                  change_unit:					; change the value of the unit in the address
-000aaa 9300 0202                 	sts		unit_addr, w
-000aac 940c 0884                 	jmp		affichage
+000aa9 9300 0202                 	sts		unit_addr, w
+000aab 940c 0884                 	jmp		affichage
                                  
                                  save_m_eeprom:					; save the menu register in the EEPROM
-000aae e0b0                      	ldi		xh, high(m_eep_addr)
-000aaf e0a0                      	ldi		xl, low(m_eep_addr)
-000ab0 2d26                      	mov		a0,m
-000ab1 ddbd                      	rcall	eeprom_store
-000ab2 940c 0884                 
+000aad e0b0                      	ldi		xh, high(m_eep_addr)
+000aae e0a0                      	ldi		xl, low(m_eep_addr)
+000aaf 2d26                      	mov		a0,m
+000ab0 ddbe                      	rcall	eeprom_store
+000ab1 940c 0884                 
                                  ; ==== Code ==== 
                                  
                                  ext_int7:
-000ab4 930f                      	push	w
-000ab5 b61f                      	in		_sreg, SREG
-000ab6 e000                      	ldi		w, 0
-000ab7 9300 0204                 	sts		alarm_addr,w
-000ab9 be1f                      	out		SREG,_sreg
-000aba 910f                      	pop		w
-000abb 9518                      	reti
+000ab3 930f                      	push	w
+000ab4 b61f                      	in		_sreg, SREG
+000ab5 e000                      	ldi		w, 0
+000ab6 9300 0204                 	sts		alarm_addr,w
+000ab8 be1f                      	out		SREG,_sreg
+000ab9 910f                      	pop		w
+000aba 9518                      	reti
                                  
                                  ovf0:
                                  	; this counter is used to slow down the timer to 40s instead of 8s						
-000abc 930f                      	push	w
-000abd 9100 0203                 	lds		w, counter_addr
-000abf 5001                      	subi	w, 1
-000ac0 9300 0203                 	sts		counter_addr, w
-000ac2 3000                      	cpi		w,0
-000ac3 f011                      	breq	PC+3
-000ac4 910f                      	pop		w
-000ac5 9518                      	reti
+000abb 930f                      	push	w
+000abc 9100 0203                 	lds		w, counter_addr
+000abe 5001                      	subi	w, 1
+000abf 9300 0203                 	sts		counter_addr, w
+000ac1 3000                      	cpi		w,0
+000ac2 f011                      	breq	PC+3
+000ac3 910f                      	pop		w
+000ac4 9518                      	reti
                                  
-000ac6 e005                      	ldi		w,5
-000ac7 9300 0203                 	sts		counter_addr, w
+000ac5 e005                      	ldi		w,5
+000ac6 9300 0203                 	sts		counter_addr, w
                                  
                                  	; push and pop and call the routine to read the temp 
-000ac9 931f                      	push	_w
-000aca 932f                      	push	a0
-000acb 933f                      	push	a1
-000acc 936f                      	push	b0
-000acd 937f                      	push	b1
-000ace 938f                      	push	b2
-000acf 928f                      	push	c0
-000ad0 929f                      	push	c1
-000ad1 92cf                      	push	d0
-000ad2 92df                      	push	d1
-000ad3 93bf                      	push	xh
-000ad4 93af                      	push	xl
-000ad5 b61f                      	in		_sreg,SREG
-000ad6 db98                      	rcall	update_temp
-000ad7 be1f                      	out		SREG,_sreg
-000ad8 91af                      	pop		xl
-000ad9 91bf                      	pop		xh
-000ada 90df                      	pop		d1
-000adb 90cf                      	pop		d0
-000adc 909f                      	pop		c1
-000add 908f                      	pop		c0
-000ade 918f                      	pop		b2
-000adf 917f                      	pop		b1
-000ae0 916f                      	pop		b0
-000ae1 913f                      	pop		a1
-000ae2 912f                      	pop		a0
-000ae3 911f                      	pop		_w
-000ae4 910f                      	pop		w
-000ae5 9518                      	reti
+000ac8 931f                      	push	_w
+000ac9 932f                      	push	a0
+000aca 933f                      	push	a1
+000acb 936f                      	push	b0
+000acc 937f                      	push	b1
+000acd 938f                      	push	b2
+000ace 928f                      	push	c0
+000acf 929f                      	push	c1
+000ad0 92cf                      	push	d0
+000ad1 92df                      	push	d1
+000ad2 93bf                      	push	xh
+000ad3 93af                      	push	xl
+000ad4 b61f                      	in		_sreg,SREG
+000ad5 db99                      	rcall	update_temp
+000ad6 be1f                      	out		SREG,_sreg
+000ad7 91af                      	pop		xl
+000ad8 91bf                      	pop		xh
+000ad9 90df                      	pop		d1
+000ada 90cf                      	pop		d0
+000adb 909f                      	pop		c1
+000adc 908f                      	pop		c0
+000add 918f                      	pop		b2
+000ade 917f                      	pop		b1
+000adf 916f                      	pop		b0
+000ae0 913f                      	pop		a1
+000ae1 912f                      	pop		a0
+000ae2 911f                      	pop		_w
+000ae3 910f                      	pop		w
+000ae4 9518                      	reti
                                  
                                  reset:	
-000ae6 ef0f
-000ae7 bf0d
-000ae8 e100
-000ae9 bf0e                      	LDSP	RAMEND			; load stack pointer (SP)
+000ae5 ef0f
+000ae6 bf0d
+000ae7 e100
+000ae8 bf0e                      	LDSP	RAMEND			; load stack pointer (SP)
                                  	
                                  	; get the menu register from the eeprom at reset
-000aea e0b0                      	ldi		xh,	high(m_eep_addr)
-000aeb e0a0                      	ldi		xl, low(m_eep_addr)
-000aec dd90                      	rcall	eeprom_load
-000aed 2e62                      	mov		m,a0
+000ae9 e0b0                      	ldi		xh,	high(m_eep_addr)
+000aea e0a0                      	ldi		xl, low(m_eep_addr)
+000aeb dd91                      	rcall	eeprom_load
+000aec 2e62                      	mov		m,a0
                                  
                                  	; set up values in the SRAM
-000aee e001                      	ldi		w,1
-000aef 9300 0202                 	sts		unit_addr,w
-000af1 e005                      	ldi		w,5
-000af2 9300 0203                 	sts		counter_addr,w
-000af4 e000                      	ldi		w,0
-000af5 9300 0204                 	sts		alarm_addr,w
-000af7 e000                      	ldi		w,0
-000af8 9300 0205                 	sts		on_off_addr,w
+000aed e001                      	ldi		w,1
+000aee 9300 0202                 	sts		unit_addr,w
+000af0 e005                      	ldi		w,5
+000af1 9300 0203                 	sts		counter_addr,w
+000af3 e000                      	ldi		w,0
+000af4 9300 0204                 	sts		alarm_addr,w
+000af6 e000                      	ldi		w,0
+000af7 9300 0205                 	sts		on_off_addr,w
                                  
                                  	; set up interrupt
-000afa e800
-000afb bf09                      	OUTI	EIMSK, 0b10000000
-000afc e800
-000afd bf0a                      	OUTI	EICRB, 0b10000000
+000af9 e800
+000afa bf09                      	OUTI	EIMSK, 0b10000000
+000afb e800
+000afc bf0a                      	OUTI	EICRB, 0b10000000
                                  
                                  	; call the reset 
-000afe dcfe                      	rcall	remote_reset
-000aff db67                      	rcall	temp_reset	
-000b00 d9df                      	rcall	LCD_init		; initialize LCD
-000b01 de92                      	rcall	store_custom_char
+000afd dcff                      	rcall	remote_reset
+000afe db68                      	rcall	temp_reset	
+000aff d9e0                      	rcall	LCD_init		; initialize LCD
+000b00 de94                      	rcall	store_custom_char
                                  
                                  	; set up timer
-000b02 e008
-000b03 bf00                      	OUTI	ASSR, (1<<AS0)	; clock from TOSC1 (external)
-000b04 e007
-000b05 bf03                      	OUTI	TCCR0,7			; CS0=7 CK/1024
-000b06 e001
-000b07 bf07                      	OUTI	TIMSK, 1<<TOIE0 ; set up the timer as overflow
-000b08 9478                      	sei		
+000b01 e008
+000b02 bf00                      	OUTI	ASSR, (1<<AS0)	; clock from TOSC1 (external)
+000b03 e007
+000b04 bf03                      	OUTI	TCCR0,7			; CS0=7 CK/1024
+000b05 e001
+000b06 bf07                      	OUTI	TIMSK, 1<<TOIE0 ; set up the timer as overflow
+000b07 9478                      	sei		
                                  
-000b09 db65                      	rcall	update_temp
+000b08 db66                      	rcall	update_temp
                                  
-000b0a cd79                      	rjmp	affichage		; turn on the screen
+000b09 cd7a                      	rjmp	affichage		; turn on the screen
                                  
                                  main:
                                  
-000b0b 9100 0204                 	lds		w, alarm_addr	; load the value indicating if the alarm needs to ring (in the 5th bit)
-000b0d 2106                      	and		w, m			; the 5th bit of m indicates if the alarm is activated by user
-000b0e fd05                      	sbrc	w, 5			; if one of the two is 0, no need to play alarm	
-000b0f dcc4                      	rcall	play			; otherwise, play
+000b0a 9100 0204                 	lds		w, alarm_addr	; load the value indicating if the alarm needs to ring (in the 5th bit)
+000b0c 2106                      	and		w, m			; the 5th bit of m indicates if the alarm is activated by user
+000b0d fd05                      	sbrc	w, 5			; if one of the two is 0, no need to play alarm	
+000b0e dcc5                      	rcall	play			; otherwise, play
                                  
-000b10 990f                      	sbic	PINIR,IR		; if the remote is sending a code, it needs to be read
-000b11 cff9                      	rjmp	main			; otherwise, wait in main
+000b0f 990f                      	sbic	PINIR,IR		; if the remote is sending a code, it needs to be read
+000b10 cff9                      	rjmp	main			; otherwise, wait in main
                                  
-000b12 94f8                      	cli						; The NEC signals have to be read without interrupt
-000b13 dcef                      	rcall	read_remote		; wait for the user to press a button
-000b14 9478                      	sei						; the interrupt is disabled in read_remote we reactivate it here
+000b11 94f8                      	cli						; The NEC signals have to be read without interrupt
+000b12 dcf0                      	rcall	read_remote		; wait for the user to press a button
+000b13 9478                      	sei						; the interrupt is disabled in read_remote we reactivate it here
                                  
-000b15 3060                      	cpi		b0,0			; if its 0, then it's a repeat or an error
-000b16 f3a1                      	breq	main
+000b14 3060                      	cpi		b0,0			; if its 0, then it's a repeat or an error
+000b15 f3a1                      	breq	main
                                  
-000b17 cea0                      	rjmp	menu_bouton
+000b16 cea2                      	rjmp	menu_bouton
                                  
 
 
@@ -6912,7 +6914,7 @@ counted separately from r26..r31 here.
 "ATmega128" register use summary:
 x  :   6 y  :   0 z  :   0 r0 : 102 r1 :   4 r2 :   0 r3 :  33 r4 :  15 
 r5 :  15 r6 :  39 r7 :   0 r8 : 115 r9 : 152 r10: 142 r11: 145 r12: 192 
-r13: 140 r14:  46 r15:  48 r16: 346 r17:  25 r18: 245 r19: 182 r20: 100 
+r13: 140 r14:  46 r15:  48 r16: 345 r17:  25 r18: 245 r19: 182 r20: 100 
 r21:  49 r22: 167 r23: 111 r24:  36 r25:  25 r26:  14 r27:  14 r28:   0 
 r29:   0 r30:  19 r31:  12 
 Registers used: 29 out of 35 (82.9%)
@@ -6920,13 +6922,13 @@ Registers used: 29 out of 35 (82.9%)
 "ATmega128" instruction use summary:
 .lds  :   0 .sts  :   0 adc   : 323 add   : 147 adiw  :   7 and   :   4 
 andi  :  19 asr   :   2 bclr  :   0 bld   :   7 brbc  :   0 brbs  :   0 
-brcc  :  29 brcs  :   0 break :   0 breq  :  62 brge  :   1 brhc  :   0 
+brcc  :  29 brcs  :   0 break :   0 breq  :  61 brge  :   1 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   1 brlo  :   1 brlt  :   3 brmi  :   1 
 brne  :  45 brpl  :   3 brsh  :   1 brtc  :   7 brts  :   0 brvc  :   2 
 brvs  :   0 bset  :   0 bst   :  13 call  :   0 cbi   :   9 cbr   :   0 
 clc   :   5 clh   :   0 cli   :   2 cln   :   0 clr   :  48 cls   :   0 
 clt   :   1 clv   :   0 clz   :   0 com   :  20 cp    :  13 cpc   :   3 
-cpi   :  56 cpse  :   2 dec   :  39 elpm  :   0 eor   :   7 fmul  :   0 
+cpi   :  55 cpse  :   2 dec   :  39 elpm  :   0 eor   :   7 fmul  :   0 
 fmuls :   0 fmulsu:   0 icall :   1 ijmp  :   1 in    :   8 inc   :   2 
 jmp   :  38 ld    :   6 ldd   :   0 ldi   : 207 lds   :  28 lpm   :  18 
 lsl   :   1 lsr   :   8 mov   : 105 movw  :   0 mul   :   0 muls  :   0 
@@ -6943,8 +6945,8 @@ Instructions used: 71 out of 114 (62.3%)
 "ATmega128" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x001630   5134    490   5624  131072   4.3%
+[.cseg] 0x000000 0x00162e   5130    492   5622  131072   4.3%
 [.dseg] 0x000100 0x000100      0      0      0    4096   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    4096   0.0%
 
-Assembly complete, 0 errors, 12 warnings
+Assembly complete, 0 errors, 14 warnings

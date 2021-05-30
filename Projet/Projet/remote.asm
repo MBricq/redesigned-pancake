@@ -5,8 +5,8 @@
 
 .equ	T2 = 14906*(1+0.034)		; start timout, T2 = (14906 + (14906 * Terr2)) 
 									;>with Terr2 = 3.4% observed with the oscilloscope
-.equ	T1 = 1125*(1+0.044)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
-									;>Terr1 = 4.4% observed with the oscilloscope
+.equ	T1 = 1125*(1+0.040)			; bit period, T1 = (1125 + (1125 * Terr1)) with 
+									;>Terr1 = 4% observed with the oscilloscope
 .equ	PINIR = PINE							
 
 ; Init the remote 

@@ -42,7 +42,7 @@ menu_error:
 	rjmp	error_sub
 	
 	PRINTF	LCD
-	.db		"ERROR",0
+	.db		"ERROR :",LF,"Press Previous",0
 	jmp		main
 
 menu_set_temp:		
@@ -109,7 +109,7 @@ display_cursor:
 ; ==== Menu Error ====
 error_sub:
 	PRINTF	LCD
-	.db		"ERROR : Press EQ", LF, "Then change menu",0
+	.db		"ERROR :",LF,"Press EQ",0
 	jmp		main
 
 ; ==== Menu Musique ====
